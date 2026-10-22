@@ -125,7 +125,7 @@ let stkEl;function updStk(){if(stkEl)stkEl.innerHTML='🌟 '+SAVE.stk}
 // ================= screens =================
 const SCR={};let cur=null,timers=[];
 function go(k){timers.forEach(clearInterval);timers=[];if(cur&&SCR[cur].leave)SCR[cur].leave();cur=k;st.innerHTML='';const s=SCR[k];bgEl.style.backgroundImage=`url(${DATA.bg[s.bg]})`;
-  const root=el('div',st,'position:absolute;inset:0');s.show(root);if(k!=='title'){stkEl=el('div',root);stkEl.id='stk';updStk()}
+  const root=el('div',st,'position:absolute;top:0;right:0;bottom:0;left:0');s.show(root);if(k!=='title'){stkEl=el('div',root);stkEl.id='stk';updStk()}
   if(k!=='title'&&k!=='hub')btn(root,'🏰','',()=>go('hub')).classList.add('back');}
 addEventListener('pointerdown',ev=>{if(!cur)return;const [x,y]=stagePt(ev);if(cur!=='ride')burst(st,x,y,['✨'],3)},{passive:true});
 
@@ -153,7 +153,7 @@ SCR.friends={bg:'castle',show(r){AUD.music('home');setTimeout(()=>AUD.say('frien
   redraw(r){go('friends')}};
 SCR.friends.redraw=function(){const keep=AUD.say;AUD.say=()=>{};go('friends');AUD.say=keep};
 
-SCR.ball={bg:'ballroom',show(r){AUD.music('ball');const lights=el('div',r,'position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:0;transition:opacity .4s');let on=false,hue=0;
+SCR.ball={bg:'ballroom',show(r){AUD.music('ball');const lights=el('div',r,'position:absolute;top:0;right:0;bottom:0;left:0;pointer-events:none;mix-blend-mode:screen;opacity:0;transition:opacity .4s');let on=false,hue=0;
   timers.push(setInterval(()=>{hue=(hue+40)%360;lights.style.background=`radial-gradient(circle at 30% 30%,hsla(${hue},90%,70%,.45),transparent 40%),radial-gradient(circle at 70% 40%,hsla(${hue+120},90%,70%,.45),transparent 40%)`},400));
   const crew=[['zoe',zoe()]].concat(SAVE.party.map(k=>[k,null]));const kits=dressedKits().slice(0,2);const n=crew.length+kits.length,sp=(W-160)/n;
   kits.forEach((k,j)=>{const x=80+sp*(crew.length+j+.5);kitChr(r,k,x,H-20,230,'dance').style.animationDelay=(j*.2)+'s'});

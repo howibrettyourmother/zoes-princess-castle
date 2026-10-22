@@ -119,7 +119,7 @@ const go2=k=>go(k);
 // ---- bus ride: pick up friends, end at school ----
 function busSvg(){return`<svg viewBox="0 0 420 220" xmlns="http://www.w3.org/2000/svg"><rect x="10" y="30" width="400" height="150" rx="34" fill="#ffcc2e" stroke="#e0a000" stroke-width="5"/><rect x="10" y="130" width="400" height="14" fill="#2a2a2a" opacity=".75"/><rect x="340" y="50" width="60" height="70" rx="12" fill="#bfe8ff" stroke="#fff" stroke-width="4"/><circle cx="398" cy="160" r="9" fill="#fff59d"/><rect x="0" y="150" width="22" height="16" rx="6" fill="#ff6b6b"/></svg>`}
 SCR.bus={bg:'town',show(r){AUD.music('wheels');sayQ(['bus','bustap'],1200);bgEl.style.backgroundImage='none';
-  const road=el('div',r,`position:absolute;inset:0;background:url(${DATA.bg.town}) 0 0/auto 100% repeat-x`);
+  const road=el('div',r,`position:absolute;top:0;right:0;bottom:0;left:0;background:url(${DATA.bg.town}) 0 0/auto 100% repeat-x`);
   const bx=W*.22,by=H-120;const bus=el('div',r,`position:absolute;left:${bx}px;top:${by-150}px;width:420px;height:220px;z-index:10`,busSvg());
   const wins=[];for(let i=0;i<4;i++){const w=el('div',bus,`position:absolute;left:${36+i*74}px;top:50px;width:62px;height:70px;border-radius:12px;background:#bfe8ff;border:4px solid #fff;overflow:hidden`);wins.push(w)}
   const seat=(w,o,kit)=>{w.innerHTML=`<div style="width:62px;height:76px;margin-top:4px">${kit?kitty(kit,SAVE.kc[kit]).replace('viewBox="0 0 200 260"','viewBox="40 20 120 140"'):person(o).replace('viewBox="0 0 200 330"',o.kid?'viewBox="45 50 110 135"':'viewBox="40 0 120 150"')}</div>`;w.firstChild.firstChild.style.cssText='width:100%;height:100%'};
@@ -153,7 +153,7 @@ SCR.school={bg:'school',show(r){AUD.music('home');sayQ(['s_hi']);const t=chr(r,F
   acts.forEach(([e,k,v],i)=>{const b=btn(r,e,`left:${W*.45+(i%2)*250}px;top:${170+(i/2|0)*260}px;width:220px;height:220px;font-size:120px`,()=>{AUD.say(v);SCH[k](r)});b.classList.add('hub')})}};
 function panel(r){r.innerHTML='';const back=btn(r,'🏫','',()=>go('school'));back.classList.add('back');stkEl=el('div',r);stkEl.id='stk';updStk();return r}
 const SCH={
- paint(r){panel(r);const pw=W-360,ph=H-200;const cv=el('canvas',r,`position:absolute;left:250px;top:150px;width:${pw}px;height:${ph}px;inset:auto;border-radius:30px;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.2);touch-action:none`);
+ paint(r){panel(r);const pw=W-360,ph=H-200;const cv=el('canvas',r,`position:absolute;left:250px;top:150px;width:${pw}px;height:${ph}px;top:auto;right:auto;bottom:auto;left:auto;border-radius:30px;background:#fff;box-shadow:0 10px 30px rgba(0,0,0,.2);touch-action:none`);
   const dpr=Math.min(2,devicePixelRatio||1);let g,k=1;const sz=()=>{const b=cv.getBoundingClientRect();cv.width=b.width*dpr;cv.height=b.height*dpr;k=cv.width/pw;g=cv.getContext('2d');g.lineCap='round';g.lineJoin='round'};setTimeout(sz,30);
   let col='#ff5fb4',size=26,dn=false,lp=null,strokes=0;
   const cols=['#ff5fb4','#ff6b6b','#ffb347','#ffe066','#57c785','#4aa8ff','#9b6bff','#6b4a2a'];
