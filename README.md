@@ -16,3 +16,10 @@ A sparkly, tap-only princess game for Zoe (almost 5). A Games by Dad game. No re
 All art and music were made for this game. The characters are simple original SVG drawings, the backgrounds were AI-generated, and the tunes are WebAudio compositions. The princess names are a nod for Zoe; the game has no official character art, logos or music. Voices are pre-recorded Piper TTS clips (`src/gen.sh`) and never use browser speechSynthesis.
 
 It builds as one self-contained `index.html` with `python3 src/build.py`, works offline through a service worker (`sw.js`, so bump `V` on each release), and is tested headless at iPad 1180×820 and iPhone sizes with `src/test.py`.
+
+## New in 1.1
+- 🎂 Daily birthday party: blow out candles, pop balloons, open 3 surprise presents each day, friends sing and cheer.
+- 🐱 Kitty Princess dress-up (Doodle & Zoe's kitties): gowns, crowns, capes, wands, necklaces. Dressed kitties come to the ball, tea party, birthday, race and bus.
+- 🦄 Unicorn Race: tap to go faster, everyone gets a medal.
+- 🚌 Bus Ride: drive the school bus, pick up friends, honk, ride to school.
+- 🏫 School with Teacher Amanda: painting, counting stars, circle-time music, snack.

@@ -17,6 +17,12 @@ const AUD=(()=>{let C=null,M,mus,sfx,vox,clips={},un=false,cur=null,muted=localS
   function tone(m,t,v,d,type,out){const g=C.createGain(),o=C.createOscillator();o.type=type||'sine';o.frequency.value=mtof(m);g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+.005);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(out||sfx);o.start(t);o.stop(t+d+.05);
     if(!type||type==='sine'){const g2=C.createGain(),o2=C.createOscillator();o2.frequency.value=mtof(m)*2.76;g2.gain.setValueAtTime(v*.25,t);g2.gain.exponentialRampToValueAtTime(.0001,t+d*.3);o2.connect(g2);g2.connect(out||sfx);o2.start(t);o2.stop(t+d)}}
   const S={chime(){const t=C.currentTime;[88,95,100].forEach((m,i)=>tone(m,t+i*.06,.18,.6))},
+    meow(){const t=C.currentTime;const g=C.createGain(),o=C.createOscillator();o.type='triangle';o.frequency.setValueAtTime(700,t);o.frequency.linearRampToValueAtTime(1100,t+.12);o.frequency.exponentialRampToValueAtTime(520,t+.45);g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(.22,t+.05);g.gain.exponentialRampToValueAtTime(.0001,t+.5);o.connect(g);g.connect(sfx);o.start(t);o.stop(t+.55)},
+    blow(){const t=C.currentTime,n=C.createBufferSource(),b=C.createBuffer(1,C.sampleRate*.4,C.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);n.buffer=b;const f=C.createBiquadFilter();f.type='bandpass';f.frequency.value=900;const g=C.createGain();g.gain.value=.5;n.connect(f);f.connect(g);g.connect(sfx);n.start(t)},
+    shaker(){const t=C.currentTime;for(let k=0;k<2;k++){const n=C.createBufferSource(),b=C.createBuffer(1,C.sampleRate*.12,C.sampleRate),d=b.getChannelData(0);for(let i=0;i<d.length;i++)d[i]=(Math.random()*2-1)*(1-i/d.length);n.buffer=b;const f=C.createBiquadFilter();f.type='highpass';f.frequency.value=4000;const g=C.createGain();g.gain.value=.4;n.connect(f);f.connect(g);g.connect(sfx);n.start(t+k*.14)}},
+    drum(){const t=C.currentTime;const g=C.createGain(),o=C.createOscillator();o.frequency.setValueAtTime(180,t);o.frequency.exponentialRampToValueAtTime(55,t+.2);g.gain.setValueAtTime(.7,t);g.gain.exponentialRampToValueAtTime(.0001,t+.3);o.connect(g);g.connect(sfx);o.start(t);o.stop(t+.35)},
+    bell(){const t=C.currentTime;[84,91,96].forEach((m,i)=>tone(m,t,.14,1.2))},
+    honk(){const t=C.currentTime;[0,.22].forEach(d=>{[58,62].forEach(m=>tone(m,t+d,.18,.18,'square'))})},
     sparkle(){const t=C.currentTime;for(let i=0;i<6;i++)tone([96,98,100,103,105,108][(R()*6)|0],t+i*.05,.07,.4)},
     pop(){const t=C.currentTime;const g=C.createGain(),o=C.createOscillator();o.frequency.setValueAtTime(500,t);o.frequency.exponentialRampToValueAtTime(1400,t+.08);g.gain.setValueAtTime(.3,t);g.gain.exponentialRampToValueAtTime(.0001,t+.15);o.connect(g);g.connect(sfx);o.start(t);o.stop(t+.2)},
     jump(){const t=C.currentTime;const g=C.createGain(),o=C.createOscillator();o.type='triangle';o.frequency.setValueAtTime(400,t);o.frequency.exponentialRampToValueAtTime(900,t+.18);g.gain.setValueAtTime(.25,t);g.gain.exponentialRampToValueAtTime(.0001,t+.25);o.connect(g);g.connect(sfx);o.start(t);o.stop(t+.3)},
@@ -26,6 +32,8 @@ const AUD=(()=>{let C=null,M,mus,sfx,vox,clips={},un=false,cur=null,muted=localS
   // original little tunes (pentatonic, composed here) -- [melody notes per 8th, bass per bar]
   const SONGS={home:{bpm:100,mel:[76,79,81,79,76,74,72,74, 76,79,84,81,79,76,79,0, 81,84,86,84,81,79,76,79, 81,79,76,74,72,0,72,0],bass:[48,53,55,48],wave:'sine'},
     ball:{bpm:126,mel:[72,72,79,79,81,84,81,79, 77,77,76,76,74,79,72,0, 76,79,84,79,76,79,84,86, 84,81,79,76,74,76,72,0],bass:[48,45,41,43],wave:'triangle',beat:1},
+    bday:{bpm:150,mel:[67,67,69,0,67,0,72,0,71,0,0,0, 67,67,69,0,67,0,74,0,72,0,0,0, 67,67,79,0,76,0,72,0,71,0,69,0,0,0, 77,77,76,0,72,0,74,0,72,0,0,0,0,0,0,0],bass:[48,43,43,48,48,53,48],wave:'triangle'},
+    wheels:{bpm:150,mel:[72,0,77,0,77,77,77,0,81,0,84,0,81,0,77,0, 79,0,79,0,79,0,0,0,76,0,74,0,72,0,0,0, 72,0,77,0,77,77,77,0,81,0,84,0,81,0,77,0, 79,0,0,0,72,0,0,0,77,0,0,0,0,0,0,0],bass:[41,41,48,48,41,41,48,41],wave:'triangle',beat:1},
     lull:{bpm:66,mel:[79,0,76,0,72,0,76,79, 81,0,79,0,76,0,0,0, 74,0,76,0,79,0,76,74, 72,0,0,0,0,0,0,0],bass:[48,53,48,43],wave:'sine'}};
   function sched(){if(!song||!ok())return;const s=SONGS[song],e=60/s.bpm/2;if(nextT<C.currentTime)nextT=C.currentTime+.05;
     while(nextT<C.currentTime+.25){const m=s.mel[step%s.mel.length];if(m)tone(m,nextT,.22,e*2.2,s.wave==='sine'?undefined:s.wave,mus);
@@ -128,10 +136,10 @@ SCR.title={bg:'castle',show(r){AUD.music('home');const t=el('div',r,'','Zoe\'s P
   const p=btn(r,'▶️',`left:${W/2-130}px;top:${H*.36}px;width:260px;height:200px;font-size:130px`,()=>{AUD.say('hizoe');go('hub')});p.classList.add('pulse')}};
 
 SCR.hub={bg:'castle',show(r){AUD.music('home');
-  chr(r,zoe(),W*.13,H-40,420,'bob');
-  const items=[['🦄','ride','ride'],['💃','ball','ball'],['🫖','tea','tea'],['👗','dress','dress'],['🛏️','bed','bed'],['💌','friends','friends']];
-  const cols=3,bw=250,bh=230,gx=36,gy=40,x0=Math.max(W*.27,W-30-(cols*bw+(cols-1)*gx)),tw=cols*bw+(cols-1)*gx,x1=x0+((W-30-x0)-tw)/2,y0=(H-(2*bh+gy))/2+30;
-  items.forEach(([e,k,v],i)=>{const b=btn(r,e,`left:${x1+(i%cols)*(bw+gx)}px;top:${y0+(i/cols|0)*(bh+gy)}px`,()=>{AUD.say(v);go(k)});b.classList.add('hub');b.dataset.k=k});
+  chr(r,zoe(),W*.12,H-40,400,'bob');
+  const items=[['🎂','bday','bd'],['🦄','ride','ride'],['🏇','race','race'],['🚌','bus','bus'],['🏫','school','school'],['🐱','kitty','kit'],['💃','ball','ball'],['🫖','tea','tea'],['👗','dress','dress'],['🛏️','bed','bed'],['💌','friends','friends']];
+  const cols=4,bw=200,bh=172,gx=24,gy=26,x0=Math.max(W*.24,W-30-(cols*bw+(cols-1)*gx)),tw=cols*bw+(cols-1)*gx,x1=x0+((W-30-x0)-tw)/2,y0=(H-(3*bh+2*gy))/2+50;
+  items.forEach(([e,k,v],i)=>{const b=btn(r,e,`left:${x1+(i%cols)*(bw+gx)}px;top:${y0+(i/cols|0)*(bh+gy)}px`,()=>{AUD.say(v);go(k)});b.classList.add('hub');b.style.width=bw+'px';b.style.height=bh+'px';b.style.fontSize='96px';b.dataset.k=k;if(k==='bday'&&!(SAVE.bd&&SAVE.bd.day===TODAY&&SAVE.bd.open.length===3))b.classList.add('pulse')});
   const m=btn(r,AUD.muted?'🔇':'🔊','left:24px;top:22px;width:110px;height:100px;font-size:56px',()=>{m.innerHTML=AUD.toggle()?'🔇':'🔊'})}};
 
 SCR.friends={bg:'castle',show(r){AUD.music('home');setTimeout(()=>AUD.say('friends'),200);
@@ -147,7 +155,8 @@ SCR.friends.redraw=function(){const keep=AUD.say;AUD.say=()=>{};go('friends');AU
 
 SCR.ball={bg:'ballroom',show(r){AUD.music('ball');const lights=el('div',r,'position:absolute;inset:0;pointer-events:none;mix-blend-mode:screen;opacity:0;transition:opacity .4s');let on=false,hue=0;
   timers.push(setInterval(()=>{hue=(hue+40)%360;lights.style.background=`radial-gradient(circle at 30% 30%,hsla(${hue},90%,70%,.45),transparent 40%),radial-gradient(circle at 70% 40%,hsla(${hue+120},90%,70%,.45),transparent 40%)`},400));
-  const crew=[['zoe',zoe()]].concat(SAVE.party.map(k=>[k,null]));const n=crew.length,sp=(W-160)/n;
+  const crew=[['zoe',zoe()]].concat(SAVE.party.map(k=>[k,null]));const kits=dressedKits().slice(0,2);const n=crew.length+kits.length,sp=(W-160)/n;
+  kits.forEach((k,j)=>{const x=80+sp*(crew.length+j+.5);kitChr(r,k,x,H-20,230,'dance').style.animationDelay=(j*.2)+'s'});
   crew.forEach(([k,o],i)=>{const x=80+sp*(i+.5),y=H-30-(i%2)*30,h=k==='zoe'?380:340;const c=o?chr(r,o,x,y,h,'dance'):grpChr(r,k,x,y,h,'dance');c.style.animationDelay=(i*.15)+'s';
     tap(c,()=>{AUD.sfx('magic');c.classList.remove('dance');anim(c,'spin');setTimeout(()=>c.classList.add('dance'),850);burst(r,x,y-h*.6,[k==='zoe'?'👑':FR[k].fx,'✨'],10)})});
   btn(r,'🪩',`left:${W-150}px;top:130px;width:120px;height:110px;font-size:70px`,()=>{on=!on;lights.style.opacity=on?1:0;AUD.sfx('sparkle')});
@@ -156,7 +165,7 @@ SCR.ball={bg:'ballroom',show(r){AUD.music('ball');const lights=el('div',r,'posit
 SCR.tea={bg:'tea',show(r){AUD.music('home');
   const guests=SAVE.party.slice(0,4);const pos=[[W*.14,H-20],[W*.86,H-20],[W*.27,H*.63],[W*.73,H*.63]];
   const cs=guests.map((k,i)=>grpChr(r,k,pos[i][0],pos[i][1],i<2?360:250));
-  const z=chr(r,zoe(),W*.5,H*.55,200);
+  dressedKits().slice(0,2).forEach((k,j)=>cs.push(kitChr(r,k,[W*.38,W*.62][j],H*.62,150)));const z=chr(r,zoe(),W*.5,H*.55,200);
   const tray=el('div',r,`position:absolute;left:${W/2-390}px;bottom:16px;width:780px;height:130px;border-radius:65px;background:rgba(255,255,255,.85);box-shadow:0 6px 16px rgba(0,0,0,.2);display:flex;justify-content:space-around;align-items:center;font-size:84px;z-index:20`);
   let placed=0,served=0;const spots=[[.36,.66],[.44,.70],[.52,.68],[.60,.70],[.66,.65],[.40,.60],[.56,.61],[.48,.63]];
   ['🧁','🍰','🍪','🫖','🍓','🍩'].forEach(f=>{const b=el('div',tray,'cursor:pointer;padding:0 6px',f);tap(b,()=>{AUD.sfx('pop');const s=spots[placed%spots.length];placed++;
