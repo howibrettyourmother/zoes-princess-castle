@@ -60,3 +60,162 @@ n7|Seven!|amy|1.25
 n8|Eight!|amy|1.25
 n9|Nine!|amy|1.25
 n10|Ten!|amy|1.25
+ln_A|Ay!|amy|1.2
+lf_A|Ay says ah, ah, like apple!|amy|1.15
+ln_B|Bee!|amy|1.2
+lf_B|Bee says buh, buh, like ball!|amy|1.15
+ln_C|See!|amy|1.2
+lf_C|See says kuh, kuh, like cat!|amy|1.15
+ln_D|Dee!|amy|1.2
+lf_D|Dee says duh, duh, like dog!|amy|1.15
+ln_E|Ee!|amy|1.2
+lf_E|Ee says eh, eh, like egg!|amy|1.15
+ln_F|Eff!|amy|1.2
+lf_F|Eff says fff, fff, like fish!|amy|1.15
+ln_G|Jee!|amy|1.2
+lf_G|Jee says guh, guh, like goat!|amy|1.15
+ln_H|Aitch!|amy|1.2
+lf_H|Aitch says huh, huh, like hat!|amy|1.15
+ln_I|Eye!|amy|1.2
+lf_I|Eye says ih, ih, like insect!|amy|1.15
+ln_J|Jay!|amy|1.2
+lf_J|Jay says juh, juh, like juice!|amy|1.15
+ln_K|Kay!|amy|1.2
+lf_K|Kay says kuh, kuh, like key!|amy|1.15
+ln_L|Ell!|amy|1.2
+lf_L|Ell says lll, lll, like lion!|amy|1.15
+ln_M|Em!|amy|1.2
+lf_M|Em says mmm, mmm, like moon!|amy|1.15
+ln_N|En!|amy|1.2
+lf_N|En says nnn, nnn, like nose!|amy|1.15
+ln_O|Oh!|amy|1.2
+lf_O|Oh says aw, aw, like octopus!|amy|1.15
+ln_P|Pee!|amy|1.2
+lf_P|Pee says puh, puh, like pig!|amy|1.15
+ln_Q|Cue!|amy|1.2
+lf_Q|Cue says kwuh, kwuh, like queen!|amy|1.15
+ln_R|Are!|amy|1.2
+lf_R|Are says rrr, rrr, like rainbow!|amy|1.15
+ln_S|Ess!|amy|1.2
+lf_S|Ess says sss, sss, like sun!|amy|1.15
+ln_T|Tee!|amy|1.2
+lf_T|Tee says tuh, tuh, like tiger!|amy|1.15
+ln_U|You!|amy|1.2
+lf_U|You says uh, uh, like umbrella!|amy|1.15
+ln_V|Vee!|amy|1.2
+lf_V|Vee says vvv, vvv, like violin!|amy|1.15
+ln_W|Double you!|amy|1.2
+lf_W|Double you says wuh, wuh, like whale!|amy|1.15
+ln_X|Ex!|amy|1.2
+lf_X|Ex says ks, ks, like box!|amy|1.15
+ln_Y|Why!|amy|1.2
+lf_Y|Why says yuh, yuh, like yarn!|amy|1.15
+ln_Z|Zee!|amy|1.2
+lf_Z|Zee says zzz, zzz, like zebra!|amy|1.15
+findl|Can you find the letter|amy|1.15
+trace|Trace it with your finger! Follow the sparkles!|amy|1.15
+ch1|Wonderful!|amy|1.15
+ch2|You did it!|amy|1.15
+ch3|Super job!|amy|1.15
+ch4|Hooray!|amy|1.15
+count|Tap each one to count!|amy|1.15
+nm_go|Let's write your name, Zoe! Start at the green dot!|amy|1.15
+nm_yay|Zee! Oh! Ee! That spells Zoe! Hooray, Princess Zoe!|amy|1.15
+nm_sign|Look! Your name is on your door!|amy|1.15
+sg_hi|Time to sign in! Trace your name on the sign in sheet.|kristin|1.05
+gm_zoe|Good morning Zoe! I'm so happy you're here!|kristin|1.05
+sg_list|Zoe is here! Now all our friends are here!|kristin|1.05
+abc|Letters and numbers!|amy|1.15
+abcsong|Let's sing the A B C's!|amy|1.15
+abcend|Now I know my A B C's!|amy|1.15
+pj|Pick your pajamas!|amy|1.15
+climb|Everybody into bed!|amy|1.15
+tuck|Tuck, tuck, snuggle!|amy|1.15
+fluff|Fluffy pillow!|amy|1.15
+nl|Nightlight on!|amy|1.15
+canopy|Pretty canopy!|amy|1.15
+stuffy|A snuggly friend!|amy|1.15
+story1|Once upon a time, a little princess named Zoe had a kitty named Doodle.|amy|1.15
+story2|One night, a sleepy unicorn floated down on a rainbow and said, let's go see the stars!|amy|1.15
+story3|They flew past the moon, and the stars twinkled, hello, hello, hello!|amy|1.15
+story4|Then the unicorn flew them home, and Zoe and Doodle snuggled into bed. The end. Goodnight!|amy|1.15
+lully|Time for a lullaby.|amy|1.15
+night|Goodnight, Zoe. Sweet dreams!|amy|1.15
+sheep|Let's count sheep! Tap the sheep!|amy|1.15
+morning|Good morning, sunshine! Time to stretch!|amy|1.15
+bath|Bath time! Splish splash!|amy|1.15
+bub|Pop the bubbles!|amy|1.15
+duck|Quack quack!|amy|1.15
+sham|Shampoo! Bubbly hair!|amy|1.15
+rinse|Rinse, rinse!|amy|1.15
+clean|So clean and sparkly!|amy|1.15
+stb|Let's take care of your unicorn!|amy|1.15
+brush|Brush, brush! So shiny!|amy|1.15
+feed|Feed the unicorn! Tap the apples!|amy|1.15
+apple|Crunch! Yummy!|amy|1.15
+unilove|Your unicorn loves you!|amy|1.15
+gdn|Let's grow a garden!|amy|1.15
+plant|Tap the dirt to plant a seed!|amy|1.15
+water|Now water the flowers!|amy|1.15
+grow|Look! It grew!|amy|1.15
+bfly|A butterfly!|amy|1.15
+bouq|What a pretty bouquet!|amy|1.15
+c_pink|Pink!|amy|1.15
+c_purple|Purple!|amy|1.15
+c_blue|Blue!|amy|1.15
+c_yellow|Yellow!|amy|1.15
+c_red|Red!|amy|1.15
+c_green|Green!|amy|1.15
+c_white|White!|amy|1.15
+c_orange|Orange!|amy|1.15
+c_navy|Dark blue!|amy|1.15
+c_brown|Brown!|amy|1.15
+c_black|Black!|amy|1.15
+c_rainbow|Rainbow!|amy|1.15
+sh_circle|Circle!|amy|1.15
+sh_square|Square!|amy|1.15
+sh_triangle|Triangle!|amy|1.15
+sh_star|Star!|amy|1.15
+sh_heart|Heart!|amy|1.15
+op_big|Big!|amy|1.15
+op_small|Small!|amy|1.15
+op_up|Up!|amy|1.15
+op_down|Down!|amy|1.15
+op_day|Day!|amy|1.15
+op_night|Night!|amy|1.15
+op_hot|Hot!|amy|1.15
+op_cold|Cold!|amy|1.15
+op_fast|Fast!|amy|1.15
+op_slow|Slow!|amy|1.15
+fl_peach|P is for Peach!|amy|1.15
+fl_rosa|R is for Rosalina!|amy|1.15
+fl_elsa|E is for Elsa!|amy|1.15
+fl_anna|A is for Anna!|amy|1.15
+fl_mom|M is for Mommy!|amy|1.15
+fl_gail|G is for Gail!|amy|1.15
+fl_gammy|G is for Gammy!|amy|1.15
+fl_amanda|A is for Amanda!|amy|1.15
+fl_kids|K is for KiddieKlub!|amy|1.15
+fl_zoe|Z is for Zoe!|amy|1.15
+catch|Catch the snowflakes!|amy|1.15
+mem|Find the matching pairs!|amy|1.15
+match|A match!|amy|1.15
+hide|Where is the kitty hiding?|amy|1.15
+found|You found me! Meow!|amy|1.15
+sort|Which basket is the same color?|amy|1.15
+dots|Connect the dots! Tap one, two, three!|amy|1.15
+dotsyay|It's a star!|amy|1.15
+balloon|Pop the balloons!|amy|1.15
+pattern|What comes next?|amy|1.15
+opp|Opposites!|amy|1.15
+album|Your sticker book!|amy|1.15
+hint|Ooh, try another one!|amy|1.15
+count5|Let's count them!|amy|1.15
+more|Again!|amy|1.15
+f_dad|Hi Zoe! Daddy loves you, kiddo!|joe|1.0
+f_alex|Hi Zoe! Wanna play with me?|ryan|1.25
+fl_dad|D is for Daddy!|amy|1.15
+fl_alex|A is for Alex!|amy|1.15
+dad_hi|Daddy is here! Hi Zoe!|joe|1.0
+alex_hi|Hi Zoe! It's me, Alex!|ryan|1.25
+sh_house|A house!|amy|1.15
