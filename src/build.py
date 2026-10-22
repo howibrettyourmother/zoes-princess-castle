@@ -15,5 +15,5 @@ sw=open(f'{D}/../sw.js').read()
 lst=["./","index.html","manifest.json","apple-touch-icon-120.png","apple-touch-icon-152.png","apple-touch-icon-167.png","apple-touch-icon.png","favicon-32.png","icon-192.png","icon-512.png","og.jpg"]+[f'assets/bg_{n}.jpg' for n in BG]+[f'assets/c/{k}.mp3' for k in keys]
 sw=re.sub(r"A=\[.*?\];","A="+json.dumps(lst)+";",sw,flags=re.S)
 open(f'{D}/../sw.js','w').write(sw)
-t=open(f'{D}/template.html').read().replace('/*__FONT__*/',b64(f'{D}/baloo.woff')).replace('/*__DATA__*/','const DATA='+json.dumps(data,separators=(',',':'))+';').replace('/*__GAME__*/',open(f'{D}/game.js').read().replace('addEventListener(\'resize\',fit);',open(f'{D}/extra.js').read()+'\n'+open(f'{D}/v2.js').read()+'\naddEventListener(\'resize\',fit);'))
+t=open(f'{D}/template.html').read().replace('/*__FONT__*/',b64(f'{D}/baloo.woff')).replace('/*__DATA__*/','const DATA='+json.dumps(data,separators=(',',':'))+';').replace('/*__GAME__*/',open(f'{D}/game.js').read().replace('addEventListener(\'resize\',fit);',open(f'{D}/extra.js').read()+'\n'+open(f'{D}/v2.js').read()+'\n'+open(f'{D}/v3.js').read()+'\naddEventListener(\'resize\',fit);'))
 open(f'{D}/../index.html','w').write(t);print(len(t),'bytes')

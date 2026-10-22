@@ -96,7 +96,7 @@ SCR.race={bg:'meadow',show(r){AUD.music('ball');AUD.say('race');
   const lanes=[{o:FR.peach.o,m:'#ff8fc8'},{o:FR.rosa.o,m:'#7fd6e8'},dk?{kit:dk,m:'#b28dff'}:{o:FR.elsa.o,m:'#b28dff'},{o:zoe(),m:SAVE.uni,z:1}];
   const x0=110,fin=W-230;el('div',r,`position:absolute;left:${fin+110}px;top:200px;width:16px;height:${H-200}px;background:repeating-linear-gradient(#fff 0 20px,#333 20px 40px)`);
   el('div',r,`position:absolute;left:${fin+90}px;top:130px;font-size:70px`,'🏁');
-  const rs=lanes.map((L,i)=>{const y=330+i*125;const d=el('div',r,`position:absolute;left:${x0}px;top:${y-150}px;width:190px;height:170px;transform-origin:50% 100%`);
+  const lt=Math.max(330,H*.3),lsp=Math.max(125,Math.min(260,(H-lt-60)/3));lanes.forEach((L,i)=>el('div',r,`position:absolute;left:0;top:${lt+i*lsp-6}px;width:${W}px;height:14px;background:${L.m};opacity:.45;border-radius:7px`));const rs=lanes.map((L,i)=>{const y=lt+i*lsp;const d=el('div',r,`position:absolute;left:${x0}px;top:${y-150}px;width:190px;height:170px;transform-origin:50% 100%`);
     d.innerHTML=`<div style="position:absolute;left:58px;top:-8px;width:66px;height:${L.kit?86:110}px">${L.kit?kitty(L.kit,SAVE.kc[L.kit]):person(L.o)}</div><div style="position:absolute;left:0;top:40px;width:190px;height:${L.z?140:130}px">${unicorn(L.m)}</div>`;
     d.querySelectorAll('svg').forEach(s=>s.style.cssText='width:100%;height:100%;overflow:visible');return{d,x:0,v:0,L,y,done:false}});
   const Z=rs[3];let go=false,t0=0,fin1=false,last=0,boost=0;
@@ -124,7 +124,7 @@ SCR.bus={bg:'town',show(r){AUD.music('wheels');sayQ(['bus','bustap'],1200);bgEl.
   const wins=[];for(let i=0;i<4;i++){const w=el('div',bus,`position:absolute;left:${36+i*74}px;top:50px;width:62px;height:70px;border-radius:12px;background:#bfe8ff;border:4px solid #fff;overflow:hidden`);wins.push(w)}
   const seat=(w,o,kit)=>{w.innerHTML=`<div style="width:62px;height:76px;margin-top:4px">${kit?kitty(kit,SAVE.kc[kit]).replace('viewBox="0 0 200 260"','viewBox="40 20 120 140"'):person(o).replace('viewBox="0 0 200 330"',o.kid?'viewBox="45 50 110 135"':'viewBox="40 0 120 150"')}</div>`;w.firstChild.firstChild.style.cssText='width:100%;height:100%'};
   seat(wins[0],zoe());const wh=[90,330].map(x=>{const e=el('div',bus,`position:absolute;left:${x-38}px;top:140px;width:76px;height:76px;border-radius:50%;background:radial-gradient(#ddd 0 30%,#333 32% 62%,#222 64%);`,'<div style="position:absolute;left:34px;top:4px;width:8px;height:30px;background:#ddd;border-radius:4px"></div>');return e});
-  const stops=[{k:'amanda'},{k:'kids'},{k:'peach'},{k:'rosa'}];const dk=dressedKits()[0];if(dk)stops[3]={kit:dk};
+  const stops=busStops();
   let dist=0,v=0,gas=0,si=0,next=400,stopEl=null,waiting=false,ended=false,last=performance.now(),rot=0;
   r.addEventListener('pointerdown',()=>{gas=.8});
   btn(r,'📯',`left:${W-170}px;top:130px;width:140px;height:130px;font-size:80px;z-index:50`,()=>{AUD.sfx('honk');anim(bus,'hop')});
@@ -136,7 +136,7 @@ SCR.bus={bg:'town',show(r){AUD.music('wheels');sayQ(['bus','bustap'],1200);bgEl.
     if(!stopEl&&!ended&&dist>next){if(si<stops.length)stopEl=mk();else{ended=true;arrive()}}
     if(stopEl){stopEl.x-=v*dt*.8;stopEl.d.style.left=stopEl.x+'px';
       if(!waiting&&stopEl.x<bx+330){waiting=true;AUD.sfx('honk');AUD.say('busstop');const s=stops[si],cur2=stopEl;
-        timers.push(setTimeout(()=>{if(s.k)AUD.say(FR[s.k].v);else AUD.sfx('meow');anim(cur2.c,'hop');},1100));
+        timers.push(setTimeout(()=>{if(s.k)AUD.say(s.k==='dad'?'dad_hi':s.k==='alex'?'alex_hi':FR[s.k].v);else AUD.sfx('meow');anim(cur2.c,'hop');},1100));
         timers.push(setTimeout(()=>{cur2.d.remove();seat(wins[si+1]||wins[3],s.k?(FR[s.k].grp?FR[s.k].grp[0]:FR[s.k].o):null,s.kit);AUD.sfx('sparkle');burst(r,bx+200,by-120,['💖','✨'],8);
           si++;next=dist+500;stopEl=null;waiting=false},3200))}}
     requestAnimationFrame(frame)}

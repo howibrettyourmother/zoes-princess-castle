@@ -34,7 +34,7 @@ bd_wow|Wow! A surprise for you!|amy|1.2
 kit|Kitty dress up!|amy|1.22
 kitpick|Pick a kitty!|amy|1.22
 kitpretty|What a pretty princess kitty!|amy|1.18
-kitmeow|Meow! Thank you, Zoe!|amy|1.4
+kitmeow|Thank you, Zoe!|amy|1.4
 race|Unicorn race!|amy|1.22
 ready|Ready, set, go! Tap tap tap!|amy|1.18
 win|You won! Hooray, Princess Zoe!|amy|1.15
@@ -145,7 +145,7 @@ sheep|Let's count sheep! Tap the sheep!|amy|1.15
 morning|Good morning, sunshine! Time to stretch!|amy|1.15
 bath|Bath time! Splish splash!|amy|1.15
 bub|Pop the bubbles!|amy|1.15
-duck|Quack quack!|amy|1.15
+duck|Rubber ducky!|amy|1.15
 sham|Shampoo! Bubbly hair!|amy|1.15
 rinse|Rinse, rinse!|amy|1.15
 clean|So clean and sparkly!|amy|1.15
@@ -201,7 +201,7 @@ catch|Catch the snowflakes!|amy|1.15
 mem|Find the matching pairs!|amy|1.15
 match|A match!|amy|1.15
 hide|Where is the kitty hiding?|amy|1.15
-found|You found me! Meow!|amy|1.15
+found|You found me!|amy|1.15
 sort|Which basket is the same color?|amy|1.15
 dots|Connect the dots! Tap one, two, three!|amy|1.15
 dotsyay|It's a star!|amy|1.15
@@ -219,3 +219,57 @@ fl_alex|A is for Alex!|amy|1.15
 dad_hi|Daddy is here! Hi Zoe!|joe|1.0
 alex_hi|Hi Zoe! It's me, Alex!|ryan|1.25
 sh_house|A house!|amy|1.15
+deco|Let's decorate the castle!|amy|1.15
+deco_put|So pretty!|amy|1.15
+pets|Pet the kitties! Rub rub rub!|amy|1.15
+pets_love|The kitty loves you!|amy|1.15
+meow1|(recording)|rec|1
+meow2|(recording)|rec|1
+meow3|(recording)|rec|1
+meow4|(recording)|rec|1
+meow5|(recording)|rec|1
+purr|(recording)|rec|1
+a_horse|(recording)|rec|1
+a_dog|(recording)|rec|1
+a_cow|(recording)|rec|1
+a_duck|(recording)|rec|1
+a_sheep|(recording)|rec|1
+a_pig|(recording)|rec|1
+a_rooster|(recording)|rec|1
+a_owl|(recording)|rec|1
+a_frog|(recording)|rec|1
+an_cat|A kitty says meow!|amy|1.15
+an_dog|A doggy says woof woof!|amy|1.15
+an_cow|A cow says moo!|amy|1.15
+an_horse|A horse says neigh!|amy|1.15
+an_duck|A duck says quack quack!|amy|1.15
+an_sheep|A sheep says baa!|amy|1.15
+an_pig|A pig says oink oink!|amy|1.15
+an_rooster|A rooster says cock a doodle doo!|amy|1.15
+an_owl|An owl says hoo hoo!|amy|1.15
+an_frog|A frog says ribbit!|amy|1.15
+an_q|Who says that? Tap the animal!|amy|1.15
+an_free|Tap an animal to hear it!|amy|1.15
+farm|Animal sounds!|amy|1.15
+an_again|Listen!|amy|1.15
+wd_mom|Mom!|amy|1.1
+wd_dad|Dad!|amy|1.1
+wd_alex|Alex!|amy|1.1
+wd_dog|dog!|amy|1.1
+wd_cat|cat!|amy|1.1
+wd_sun|sun!|amy|1.1
+wd_hat|hat!|amy|1.1
+wd_bus|bus!|amy|1.1
+wd_cow|cow!|amy|1.1
+wd_pig|pig!|amy|1.1
+wd_red|red!|amy|1.1
+wd_bed|bed!|amy|1.1
+wd_cup|cup!|amy|1.1
+wd_star|star!|amy|1.1
+wd_love|love!|amy|1.1
+words|Let's write words!|amy|1.15
+wd_go|Trace the word!|amy|1.15
+wd_yay|You wrote a word! Hooray!|amy|1.15
+ln_W2|Wilson!|amy|1.1
+fullname|Zoe Wilson! Trace your whole name!|amy|1.15
+fn_yay|Zoe Wilson! You wrote your whole name!|amy|1.15
