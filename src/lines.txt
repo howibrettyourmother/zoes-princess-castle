@@ -1,0 +1,25 @@
+title|Zoe's Princess Castle!|amy|1.2
+hizoe|Hi Princess Zoe! Welcome to your castle!|amy|1.15
+ride|Let's ride a unicorn!|amy|1.2
+pickuni|Pick your unicorn!|amy|1.2
+tapjump|Tap to jump!|amy|1.2
+star|A star!|amy|1.28
+heart|A heart!|amy|1.28
+great|You did it! Great job, Princess Zoe!|amy|1.15
+ball|Dance party!|amy|1.22
+tea|Tea party time!|amy|1.2
+yum|Yum yum!|amy|1.3
+dress|Dress up time!|amy|1.2
+pretty|So pretty!|amy|1.25
+bed|Time for bed. Night night!|amy|1.1
+friends|Who should come play?|amy|1.18
+sticker|You got a sticker!|amy|1.2
+f_peach|Hi Zoe! It's me, Princess Peach!|kristin|1.15
+f_rosa|Hello Zoe! I'm Princess Rosalina! Twinkle twinkle!|lessac|1.08
+f_elsa|Hi Zoe! I'm Elsa! Let's make snowflakes!|hfc_female|1.08
+f_anna|Hey Zoe! I'm Anna! Wanna play?|kristin|1.22
+f_mom|Hi sweetie! I love you, Zoe!|hfc_female|1.0
+f_gail|Hi Zoe! Grandma Gail is here! Big hugs!|lessac|0.98
+f_gammy|Hello my sweet girl! It's Gammy!|amy|1.0
+f_amanda|Good morning, Zoe! It's Teacher Amanda!|kristin|1.05
+f_kids|Hi Zoe! KiddieKlub friends are here!|amy|1.3
