@@ -205,7 +205,7 @@ let prevScr=null;function go(k){timers.forEach(clearInterval);timers=[];if(cur&&
   if(k!=='title'&&k!=='hub')btn(root,'🏰','',()=>go('hub')).classList.add('back');}
 addEventListener('pointerdown',ev=>{if(!cur)return;const [x,y]=stagePt(ev);if(cur!=='ride')burst(st,x,y,['✨'],3)},{passive:true});
 
-SCR.title={bg:'castle',show(r){AUD.music('home');const t=el('div',r,'','Zoe\'s Princess Castle');t.id='ttl';
+SCR.title={bg:'castle',show(r){AUD.music('home');const t=el('div',r,'','Zoe\'s Princess Castle');t.id='ttl';t.style.whiteSpace='nowrap';t.style.fontSize=Math.min(110,W/13|0)+'px';
   const u=el('div',r,`position:absolute;left:${W*.08}px;top:${H-470}px;width:500px;height:440px`,unicorn(SAVE.uni));u.className='bob';
   el('div',u,'position:absolute;left:150px;top:-40px;width:160px;height:260px',person(zoe()));
   chr(r,FR.peach.o,W*.62,H-40,330,'bob');chr(r,FR.elsa.o,W*.76,H-30,330,'bob').style.animationDelay='.4s';chr(r,FR.anna.o,W*.9,H-36,320,'bob').style.animationDelay='.8s';
