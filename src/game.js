@@ -16,7 +16,8 @@ const AUD=(()=>{let C=null,M,mus,sfx,vox,clips={},un=false,cur=null,muted=localS
   ['pointerdown','touchend','click'].forEach(e=>addEventListener(e,unlock,{capture:true,passive:true}));
   document.addEventListener('visibilitychange',()=>{if(!C)return;if(document.hidden){C.suspend().catch(()=>{});silentEl&&silentEl.pause()}else if(un){C.resume().catch(()=>{})}});
   const ok=()=>C&&C.state==='running';
-  function say(k,tries){if(!C){return}if(!clips[k]){loadClip(k);if((tries||0)<20)setTimeout(()=>say(k,(tries||0)+1),150);return}if(!ok())return;
+  let _vk='',_vt=0,_ve=0,_sx=[];function sfxOK(){const n=Date.now();_sx=_sx.filter(x=>n-x<350);if(_sx.length>=3)return false;_sx.push(n);return true}
+  function say(k,tries){if(!C){return}if(!clips[k]){loadClip(k);if((tries||0)<20)setTimeout(()=>say(k,(tries||0)+1),150);return}if(!ok())return;if(!/^(ln_|wd_|nm_|lf_|num)/.test(k)){const n=Date.now();if(k===_vk&&n-_vt<4000)return;if(n<_ve&&n-_vt<1200)return;_vk=k;_vt=n;_ve=n+clips[k].duration*1000}
     try{if(cur)cur.stop()}catch(e){}const s=C.createBufferSource();s.buffer=clips[k];s.connect(vox);s.start();cur=s;
     mus.gain.setTargetAtTime(.08,C.currentTime,.05);mus.gain.setTargetAtTime(.22,C.currentTime+clips[k].duration,.2)}
   function tone(m,t,v,d,type,out){const g=C.createGain(),o=C.createOscillator();o.type=type||'sine';o.frequency.value=mtof(m);g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+.005);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(out||sfx);o.start(t);o.stop(t+d+.05);
@@ -51,8 +52,8 @@ const AUD=(()=>{let C=null,M,mus,sfx,vox,clips={},un=false,cur=null,muted=localS
       if(step%8===0){tone(s.bass[(step/8|0)%s.bass.length],nextT,.3,e*7,'triangle',mus)}
       if(s.beat&&step%2===0){const g=C.createGain(),o=C.createOscillator();o.frequency.setValueAtTime(140,nextT);o.frequency.exponentialRampToValueAtTime(50,nextT+.12);g.gain.setValueAtTime(step%4===0?.5:.15,nextT);g.gain.exponentialRampToValueAtTime(.0001,nextT+.15);o.connect(g);g.connect(mus);o.start(nextT);o.stop(nextT+.2)}
       nextT+=e;step++}}
-  function rec(k,tries){if(!C)return;if(!clips[k]){loadClip(k);if((tries||0)<20)setTimeout(()=>rec(k,(tries||0)+1),150);return}if(!ok())return;const s=C.createBufferSource();s.buffer=clips[k];s.connect(sfx);s.start();return s}
-  return {say,rec,dur:k=>clips[k]?clips[k].duration:2.5,load:loadClip,note:(m,d,v,w)=>{if(ok())tone(m,C.currentTime+.02,v||.2,d||.5,w)},sfx:k=>{try{ok()&&S[k]()}catch(e){}},music:k=>{if(song!==k){song=k;step=0}},
+  const _rs={};function rec(k,tries){if(!C)return;if(!clips[k]){loadClip(k);if((tries||0)<20)setTimeout(()=>rec(k,(tries||0)+1),150);return}if(!ok())return;const gk=/^meow/.test(k)?'meow':k;if(_rs[gk]){try{_rs[gk].stop()}catch(e){}}else if(!sfxOK())return;const s=C.createBufferSource();s.buffer=clips[k];s.connect(sfx);s.start();_rs[gk]=s;s.onended=()=>{if(_rs[gk]===s)_rs[gk]=null};return s}
+  return {say,rec,dur:k=>clips[k]?clips[k].duration:2.5,load:loadClip,note:(m,d,v,w)=>{if(ok())tone(m,C.currentTime+.02,v||.2,d||.5,w)},sfx:k=>{try{ok()&&sfxOK()&&S[k]()}catch(e){}},music:k=>{if(song!==k){song=k;step=0}},
     get muted(){return muted},toggle(){muted=!muted;localStorage.setItem('zpc_mute',muted?'1':'0');if(M)M.gain.value=muted?0:1;return muted},unlock}})();
 
 // ================= characters (original SVG art) =================

@@ -47,10 +47,10 @@ const MEOWS=['meow1','meow2','meow3','meow4','meow5'];
 // ---------- Animal Sounds (farm) ----------
 const ANI=[['cat','🐱','meow'],['dog','🐶','a_dog'],['cow','🐮','a_cow'],['horse','🐴','a_horse'],['duck','🦆','a_duck'],['sheep','🐑','a_sheep'],['pig','🐷','a_pig'],['rooster','🐓','a_rooster'],['owl','🦉','a_owl'],['frog','🐸','a_frog']];
 function aniPlay(a){if(a[2]==='meow')AUD.rec(pick(MEOWS));else AUD.rec(a[2])}
-SCR.farm={bg:'stable',show(r){AUD.music('home');let streak=0,ans=null,busyF=false,prev=null;
+SCR.farm={_s:{},_t:0,bg:'stable',show(r){clearTimeout(SCR.farm._t);AUD.music('home');let streak=0,ans=null,busyF=false,prev=null;
   const free=!!ARG.farmFree;
   btn(r,free?'🎯':'🎹',`left:${W-150}px;top:130px;width:120px;height:110px;font-size:64px;z-index:40`,()=>{ARG.farmFree=!free;go('farm')});
-  if(free){AUD.say('an_free');const cols=5,bw=Math.min(190,(W-200)/cols-24);ANI.forEach((a,i)=>{const b=btn(r,a[1],`left:${(W-cols*(bw+24))/2+(i%cols)*(bw+24)}px;top:${H*.22+(i/cols|0)*(bw+40)}px;width:${bw}px;height:${bw}px;font-size:${bw*.62|0}px`,()=>{aniPlay(a);anim(b,'hop');burst(r,W/2,H*.5,['🎵','💖'],4);setTimeout(()=>AUD.say('an_'+a[0]),1700)})});return}
+  if(free){AUD.say('an_free');const cols=5,bw=Math.min(190,(W-200)/cols-24);ANI.forEach((a,i)=>{const b=btn(r,a[1],`left:${(W-cols*(bw+24))/2+(i%cols)*(bw+24)}px;top:${H*.22+(i/cols|0)*(bw+40)}px;width:${bw}px;height:${bw}px;font-size:${bw*.62|0}px`,()=>{aniPlay(a);anim(b,'wob');burst(r,W/2,H*.5,['🎵','💖'],2);const n=Date.now();clearTimeout(SCR.farm._t);if(n-(SCR.farm._s[a[0]]||0)>4000){SCR.farm._t=setTimeout(()=>{SCR.farm._s[a[0]]=Date.now();AUD.say('an_'+a[0])},1500)}})});return}
   const stars=el('div',r,`position:absolute;left:${W/2-200}px;top:120px;width:400px;height:70px;text-align:center;font-size:52px`,'');
   const sp=btn(r,'🔊',`left:${W/2-90}px;top:${H*.24}px;width:180px;height:140px;font-size:84px;z-index:40`,()=>{if(ans){aniPlay(ans);anim(sp,'hop')}});
   let tiles=[];
@@ -59,7 +59,7 @@ SCR.farm={bg:'stable',show(r){AUD.music('home');let streak=0,ans=null,busyF=fals
     const bw=Math.min(260,(W-160)/3-50,H*.36);
     ch.forEach((a,i)=>{const b=btn(r,a[1],`left:${W/2+(i-1)*(bw+50)-bw/2}px;top:${H*.24+170}px;width:${bw}px;height:${bw}px;font-size:${bw*.66|0}px`,()=>{if(busyF)return;
       if(a===ans){busyF=true;streak++;stars.innerHTML='⭐'.repeat(Math.min(streak,6));AUD.sfx('chime');aniPlay(a);burst(r,W/2,H*.6,['⭐','💖','✨'],14);anim(b,'spin');
-        setTimeout(()=>AUD.say('an_'+a[0]),1500);if(streak%5===0&&SAVE.farmSt!==TODAY+streak){SAVE.farmSt=TODAY+streak;save();later(3400,()=>stickerUp(r))}later(streak%5===0?6200:4200,round)}
+        later(1500,()=>AUD.say('an_'+a[0]));if(streak%5===0&&SAVE.farmSt!==TODAY+streak){SAVE.farmSt=TODAY+streak;save();later(3400,()=>stickerUp(r))}later(streak%5===0?6200:4200,round)}
       else{aniPlay(a);anim(b,'wob');burst(r,W/2,H*.6,['🎵'],3)}});tiles.push(b)});
     AUD.say('an_q');later(1700,()=>aniPlay(ans))}
   later(600,round)}};
