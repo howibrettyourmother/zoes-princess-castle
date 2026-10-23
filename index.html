@@ -19,6 +19,7 @@ html,body{margin:0;height:100%;overflow:hidden;background:#f7c6e6;font-family:B,
 .back{left:24px;top:22px;width:120px;height:110px;font-size:64px;z-index:50}
 .hub{width:250px;height:230px;flex-direction:column;font-size:110px;line-height:1}
 .hub small{font-size:0}
+.lbl{position:absolute;left:2px;right:2px;bottom:6px;text-align:center;font-style:normal;font-weight:700;line-height:1.05;color:#a0508a;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;pointer-events:none;font-family:system-ui,-apple-system,sans-serif}
 .ch{position:absolute;transform-origin:50% 100%;pointer-events:auto}
 .ch svg{width:100%;height:100%;overflow:visible;display:block}
 .sw{position:absolute;width:96px;height:96px;border-radius:50%;border:8px solid #fff;box-shadow:0 6px 14px rgba(0,0,0,.2);cursor:pointer}
@@ -557,7 +558,7 @@ SCR.hub.show=function(r){AUD.music('home');
     ['🚌','bus','bus'],['🏫','school','school'],['🛁','bath','bath'],['🐴','stable','stb'],['🐮','farm','farm'],['🌷','garden','gdn'],['🐱','kitty','kit'],
     ['💃','ball','ball'],['🫖','tea','tea'],['👗','dress','dress'],['💌','friends','friends'],['🙈','hide','hide'],['📒','album','album'],['🖼️','deco','deco'],['😻','pets','pets']];
   const cols=items.length>18?7:6,x0=Math.max(W*.2,W-40-cols*150-(cols-1)*16),tw=W-30-x0,gx=14,bw=Math.min(150,(tw-(cols-1)*gx)/cols),bh=Math.min(160,bw*1.07),gy=18,y0=Math.max(140,(H-(3*bh+2*gy))/2+40),x1=x0+(tw-(cols*bw+(cols-1)*gx))/2;
-  items.forEach(([e,k,v],i)=>{const b=btn(r,e,`left:${x1+(i%cols)*(bw+gx)}px;top:${y0+(i/cols|0)*(bh+gy)}px`,()=>{AUD.say(v);go(k)});b.classList.add('hub');b.style.width=bw+'px';b.style.height=bh+'px';b.style.fontSize=(bw*.6|0)+'px';b.dataset.k=k;
+  items.forEach(([e,k,v],i)=>{const b=btn(r,e,`left:${x1+(i%cols)*(bw+gx)}px;top:${y0+(i/cols|0)*(bh+gy)}px`,()=>{AUD.say(v);go(k)});b.classList.add('hub');b.style.width=bw+'px';b.style.height=bh+'px';b.style.fontSize=(bw*.6|0)+'px';b.dataset.k=k;const lb=document.createElement('i');lb.className='lbl';lb.textContent={bed:'Bedroom',abc:'ABC & 123',name:'Write Name',bday:'Birthday',ride:'Unicorn Ride',race:'Race',bus:'Bus',school:'School',bath:'Bath',stable:'Stable',farm:'Animal Sounds',garden:'Garden',kitty:'Kitty Dress-Up',ball:'Ballroom',tea:'Tea Party',dress:'Dress Up',friends:'Friends',hide:'Hide & Seek',album:'Sticker Book',deco:'Decorate',pets:'Pet Kitties'}[k]||'';lb.style.fontSize=Math.max(15,bw*.13|0)+'px';b.style.paddingBottom=(bw*.14|0)+'px';b.appendChild(lb);
     if(k==='bday'&&!(SAVE.bd&&SAVE.bd.day===TODAY&&SAVE.bd.open.length===3))b.classList.add('pulse');if(k==='name'&&!SAVE.nameSign)b.classList.add('pulse')});
   // easter egg: a kitty peeks out from a random spot
   const spots=[[W*.25,H-60],[W-90,H-50],[x1+bw*3,y0-60]],sp=pick(spots);const pk=el('div',r,`position:absolute;left:${sp[0]-50}px;top:${sp[1]-60}px;width:100px;height:90px;z-index:15;cursor:pointer`,kitty(SAVE.kitSel||'doodle',{}).replace('viewBox="0 0 200 260"','viewBox="30 20 140 125"'));pk.firstChild.style.cssText='width:100%;height:100%';pk.className='bob';
