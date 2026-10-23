@@ -148,7 +148,7 @@ let stkEl;function updStk(){if(stkEl)stkEl.innerHTML='🌟 '+SAVE.stk}
 
 // ================= screens =================
 const SCR={};let cur=null,timers=[];
-let prevScr=null;function go(k){timers.forEach(clearInterval);timers=[];if(cur&&SCR[cur].leave)SCR[cur].leave();prevScr=cur;cur=k;bgEl.style.background='';st.innerHTML='';const s=SCR[k];bgEl.style.backgroundImage=`url(${DATA.bg[s.bg]})`;
+let prevScr=null;function go(k){if(k!=='title'){SAVE.scr=k;try{save()}catch(e){}}timers.forEach(clearInterval);timers=[];if(cur&&SCR[cur].leave)SCR[cur].leave();prevScr=cur;cur=k;bgEl.style.background='';st.innerHTML='';const s=SCR[k];bgEl.style.backgroundImage=`url(${DATA.bg[s.bg]})`;
   const root=el('div',st,'position:absolute;top:0;right:0;bottom:0;left:0');s.show(root);if(k!=='title'){stkEl=el('div',root);stkEl.id='stk';updStk()}
   if(k!=='title'&&k!=='hub')btn(root,'🏰','',()=>go('hub')).classList.add('back');}
 addEventListener('pointerdown',ev=>{if(!cur)return;const [x,y]=stagePt(ev);if(cur!=='ride')burst(st,x,y,['✨'],3)},{passive:true});
@@ -157,7 +157,7 @@ SCR.title={bg:'castle',show(r){AUD.music('home');const t=el('div',r,'','Zoe\'s P
   const u=el('div',r,`position:absolute;left:${W*.08}px;top:${H-470}px;width:500px;height:440px`,unicorn(SAVE.uni));u.className='bob';
   el('div',u,'position:absolute;left:150px;top:-40px;width:160px;height:260px',person(zoe()));
   chr(r,FR.peach.o,W*.62,H-40,330,'bob');chr(r,FR.elsa.o,W*.76,H-30,330,'bob').style.animationDelay='.4s';chr(r,FR.anna.o,W*.9,H-36,320,'bob').style.animationDelay='.8s';
-  const p=btn(r,'▶️',`left:${W/2-110}px;top:180px;width:220px;height:150px;font-size:110px;z-index:20`,()=>{AUD.say('hizoe');go('hub')});p.classList.add('pulse')}};
+  const p=btn(r,'▶️',`left:${W/2-110}px;top:180px;width:220px;height:150px;font-size:110px;z-index:20`,()=>{AUD.say('hizoe');go(SAVE.scr&&SCR[SAVE.scr]&&SAVE.scr!=='title'?SAVE.scr:'hub')});p.classList.add('pulse')}};
 
 SCR.hub={bg:'castle',show(r){AUD.music('home');
   chr(r,zoe(),W*.12,H-40,400,'bob');
@@ -255,3 +255,5 @@ addEventListener('resize',fit);addEventListener('orientationchange',()=>setTimeo
 document.addEventListener('gesturestart',e=>e.preventDefault());
 fit();go(new URLSearchParams(location.search).get('s')||'title');
 window.__Z={go,SAVE};
+
+window.hubSave=function(){try{save()}catch(e){}};addEventListener('pagehide',window.hubSave);
