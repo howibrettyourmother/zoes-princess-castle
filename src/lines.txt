@@ -273,3 +273,23 @@ wd_yay|You wrote a word! Hooray!|amy|1.15
 ln_W2|Wilson!|amy|1.1
 fullname|Zoe Wilson! Trace your whole name!|amy|1.15
 fn_yay|Zoe Wilson! You wrote your whole name!|amy|1.15
+n11|11!|amy|1.25
+n12|12!|amy|1.25
+n13|13!|amy|1.25
+n14|14!|amy|1.25
+n15|15!|amy|1.25
+n16|16!|amy|1.25
+n17|17!|amy|1.25
+n18|18!|amy|1.25
+n19|19!|amy|1.25
+n20|20!|amy|1.25
+n21|21!|amy|1.25
+n22|22!|amy|1.25
+n23|23!|amy|1.25
+n24|24!|amy|1.25
+n25|25!|amy|1.25
+n26|26!|amy|1.25
+n27|27!|amy|1.25
+n28|28!|amy|1.25
+n29|29!|amy|1.25
+n30|30!|amy|1.25
