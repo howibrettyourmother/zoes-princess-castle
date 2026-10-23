@@ -17,8 +17,8 @@ const AUD=(()=>{let C=null,M,mus,sfx,vox,clips={},un=false,cur=null,muted=localS
   document.addEventListener('visibilitychange',()=>{if(!C)return;if(document.hidden){C.suspend().catch(()=>{});silentEl&&silentEl.pause()}else if(un){C.resume().catch(()=>{})}});
   const ok=()=>C&&C.state==='running';
   let _vk='',_vt=0,_ve=0,_sx=[];function sfxOK(){const n=Date.now();_sx=_sx.filter(x=>n-x<350);if(_sx.length>=3)return false;_sx.push(n);return true}
-  let _nk='',_np=0;function say(k,tries){if(!C){return}const isN=/^n\d+$/.test(k);if(isN){if(!tries)_nk=k;else if(k!==_nk)return;if(!_np){_np=1;for(let i=1;i<=30;i++)loadClip('n'+i)}}if(!clips[k]){loadClip(k);if((tries||0)<20)setTimeout(()=>say(k,(tries||0)+1),150);return}if(!ok())return;if(!isN&&!/^(ln_|wd_|nm_|lf_|num)/.test(k)){const n=Date.now();if(k===_vk&&n-_vt<4000)return;if(n<_ve&&n-_vt<1200)return;_vk=k;_vt=n;_ve=n+clips[k].duration*1000}
-    try{if(cur)cur.stop()}catch(e){}const s=C.createBufferSource();s.buffer=clips[k];s.connect(vox);s.start();cur=s;
+  let _nk='',_np=0,_se=0;function say(k,tries){if(!C){return}const isN=/^n\d+$/.test(k);if(isN){if(!tries)_nk=k;else if(k!==_nk)return;if(!_np){_np=1;for(let i=1;i<=30;i++)loadClip('n'+i)}}if(!clips[k]){loadClip(k);if((tries||0)<20)setTimeout(()=>say(k,(tries||0)+1),150);return}if(!ok())return;if(!isN&&!/^(ln_|wd_|nm_|lf_|num)/.test(k)){const n=Date.now();if(k===_vk&&n-_vt<4000)return;if(n<_ve&&n-_vt<1200)return;_vk=k;_vt=n;_ve=n+clips[k].duration*1000}
+    try{if(cur)cur.stop()}catch(e){}const s=C.createBufferSource();s.buffer=clips[k];s.connect(vox);s.start();cur=s;_se=C.currentTime+clips[k].duration;
     mus.gain.setTargetAtTime(.08,C.currentTime,.05);mus.gain.setTargetAtTime(.22,C.currentTime+clips[k].duration,.2)}
   function tone(m,t,v,d,type,out){const g=C.createGain(),o=C.createOscillator();o.type=type||'sine';o.frequency.value=mtof(m);g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+.005);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(out||sfx);o.start(t);o.stop(t+d+.05);
     if(!type||type==='sine'){const g2=C.createGain(),o2=C.createOscillator();o2.frequency.value=mtof(m)*2.76;g2.gain.setValueAtTime(v*.25,t);g2.gain.exponentialRampToValueAtTime(.0001,t+d*.3);o2.connect(g2);g2.connect(out||sfx);o2.start(t);o2.stop(t+d)}}
@@ -47,14 +47,14 @@ const AUD=(()=>{let C=null,M,mus,sfx,vox,clips={},un=false,cur=null,muted=localS
     wheels:{bpm:150,mel:[72,0,77,0,77,77,77,0,81,0,84,0,81,0,77,0, 79,0,79,0,79,0,0,0,76,0,74,0,72,0,0,0, 72,0,77,0,77,77,77,0,81,0,84,0,81,0,77,0, 79,0,0,0,72,0,0,0,77,0,0,0,0,0,0,0],bass:[41,41,48,48,41,41,48,41],wave:'triangle',beat:1},
     abc:{bpm:120,mel:[72,0,72,0,79,0,79,0,81,0,81,0,79,0,0,0, 77,0,77,0,76,0,76,0,74,74,74,74,72,0,0,0, 79,0,79,0,77,0,0,0,76,0,76,0,74,0,0,0, 79,0,79,0,77,0,0,0,76,0,76,0,74,0,0,0],bass:[48,53,48,43,48,43,48,43],wave:'sine'},
     lull:{bpm:66,mel:[79,0,76,0,72,0,76,79, 81,0,79,0,76,0,0,0, 74,0,76,0,79,0,76,74, 72,0,0,0,0,0,0,0],bass:[48,53,48,43],wave:'sine'}};
-  function sched(){if(!song||!ok())return;const s=SONGS[song],e=60/s.bpm/2;if(nextT<C.currentTime)nextT=C.currentTime+.05;
+  function sched(){if(window.BGM&&BGM.ready)return;if(!song||!ok())return;const s=SONGS[song],e=60/s.bpm/2;if(nextT<C.currentTime)nextT=C.currentTime+.05;
     while(nextT<C.currentTime+.25){const m=s.mel[step%s.mel.length];if(m)tone(m,nextT,.22,e*2.2,s.wave==='sine'?undefined:s.wave,mus);
       if(step%8===0){tone(s.bass[(step/8|0)%s.bass.length],nextT,.3,e*7,'triangle',mus)}
       if(s.beat&&step%2===0){const g=C.createGain(),o=C.createOscillator();o.frequency.setValueAtTime(140,nextT);o.frequency.exponentialRampToValueAtTime(50,nextT+.12);g.gain.setValueAtTime(step%4===0?.5:.15,nextT);g.gain.exponentialRampToValueAtTime(.0001,nextT+.15);o.connect(g);g.connect(mus);o.start(nextT);o.stop(nextT+.2)}
       nextT+=e;step++}}
   const _rs={};function rec(k,tries){if(!C)return;if(!clips[k]){loadClip(k);if((tries||0)<20)setTimeout(()=>rec(k,(tries||0)+1),150);return}if(!ok())return;const gk=/^meow/.test(k)?'meow':k;if(_rs[gk]){try{_rs[gk].stop()}catch(e){}}else if(!sfxOK())return;const s=C.createBufferSource();s.buffer=clips[k];s.connect(sfx);s.start();_rs[gk]=s;s.onended=()=>{if(_rs[gk]===s)_rs[gk]=null};return s}
   return {say,rec,dur:k=>clips[k]?clips[k].duration:2.5,load:loadClip,note:(m,d,v,w)=>{if(ok())tone(m,C.currentTime+.02,v||.2,d||.5,w)},sfx:k=>{try{ok()&&sfxOK()&&S[k]()}catch(e){}},music:k=>{if(song!==k){song=k;step=0}},
-    get muted(){return muted},toggle(){muted=!muted;localStorage.setItem('zpc_mute',muted?'1':'0');if(M)M.gain.value=muted?0:1;return muted},unlock}})();
+    get song(){return song},get speaking(){return !!C&&C.currentTime<_se},get muted(){return muted},toggle(){muted=!muted;localStorage.setItem('zpc_mute',muted?'1':'0');if(M)M.gain.value=muted?0:1;return muted},unlock}})();
 
 // ================= characters (original SVG art) =================
 const SKIN={l:'#ffe0cc',m:'#f3c4a0',t:'#d9a07a',d:'#a8704e'};
