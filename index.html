@@ -939,4 +939,8 @@ b.addEventListener('mousedown',down);b.addEventListener('mouseup',up);b.addEvent
 ['pointerdown','pointerup','click'].forEach(function(n){b.addEventListener(n,stop)});
 function add(){document.body.appendChild(b);document.body.appendChild(hint)}if(document.body)add();else addEventListener('DOMContentLoaded',add)})();</script>
 <script>/*bgm*/window.BGM_CFG={"id":"zoes-princess-castle","base":"music/","v":"20261023m","tracks":{"home":[96.0,1.0],"ball":[85.714286,1.0],"bday":[99.310345,1.0],"wheels":[91.428571,1.0],"lull":[80.0,1.0]},"map":{"":""},"pos":"right:12px;top:70px","poll":function(){if(typeof AUD==='undefined')return{};return{area:AUD.song||'',speaking:AUD.speaking,muted:AUD.muted}}};</script><script src="music/bgm.js?v=20261023m" defer></script>
+<script>/*sw-reload*/(function(){if(!('serviceWorker' in navigator))return;var sw=navigator.serviceWorker,had=!!sw.controller,done=false;
+sw.addEventListener('controllerchange',function(){if(!had){had=true;return}if(done)return;done=true;try{if(sessionStorage.swReloaded&&Date.now()-sessionStorage.swReloaded<10000)return;sessionStorage.swReloaded=Date.now()}catch(e){}location.reload()});
+function up(){if(sw.getRegistration)sw.getRegistration().then(function(g){if(g)g.update()}).catch(function(){})}
+document.addEventListener('visibilitychange',function(){if(document.visibilityState==='visible')up()});})();</script>
 </body></html>
