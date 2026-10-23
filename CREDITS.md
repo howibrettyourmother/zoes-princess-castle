@@ -21,3 +21,5 @@ All animal sounds are real recordings released as **CC0 1.0 (public domain dedic
 | a_frog | "One frog" (#0819), https://bigsoundbank.com/sound-0819 | Joseph SARDIN, BigSoundBank | CC0 |
 
 BigSoundBank license: https://bigsoundbank.com/droits.html (CC0). Wikimedia files: https://commons.wikimedia.org
+
+Farm animal lines (an_*) speak only the words ("A kitty says") and then the real recording above plays (no Piper animal sounds).

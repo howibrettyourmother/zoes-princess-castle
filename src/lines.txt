@@ -238,16 +238,16 @@ a_pig|(recording)|rec|1
 a_rooster|(recording)|rec|1
 a_owl|(recording)|rec|1
 a_frog|(recording)|rec|1
-an_cat|A kitty says meow!|amy|1.15
-an_dog|A doggy says woof woof!|amy|1.15
-an_cow|A cow says moo!|amy|1.15
-an_horse|A horse says neigh!|amy|1.15
-an_duck|A duck says quack quack!|amy|1.15
-an_sheep|A sheep says baa!|amy|1.15
-an_pig|A pig says oink oink!|amy|1.15
-an_rooster|A rooster says cock a doodle doo!|amy|1.15
-an_owl|An owl says hoo hoo!|amy|1.15
-an_frog|A frog says ribbit!|amy|1.15
+an_cat|A kitty says|amy|1.15|/workspace/zoes-princess-castle/src/clips/meow1.mp3
+an_dog|A doggy says|amy|1.15|/workspace/zoes-princess-castle/src/clips/a_dog.mp3
+an_cow|A cow says|amy|1.15|/workspace/zoes-princess-castle/src/clips/a_cow.mp3
+an_horse|A horse says|amy|1.15|/workspace/zoes-princess-castle/src/clips/a_horse.mp3
+an_duck|A duck says|amy|1.15|/workspace/zoes-princess-castle/src/clips/a_duck.mp3
+an_sheep|A sheep says|amy|1.15|/workspace/zoes-princess-castle/src/clips/a_sheep.mp3
+an_pig|A pig says|amy|1.15|/workspace/zoes-princess-castle/src/clips/a_pig.mp3
+an_rooster|A rooster says|amy|1.15|/workspace/zoes-princess-castle/src/clips/a_rooster.mp3
+an_owl|An owl says|amy|1.15|/workspace/zoes-princess-castle/src/clips/a_owl.mp3
+an_frog|A frog says|amy|1.15|/workspace/zoes-princess-castle/src/clips/a_frog.mp3
 an_q|Who says that? Tap the animal!|amy|1.15
 an_free|Tap an animal to hear it!|amy|1.15
 farm|Animal sounds!|amy|1.15
