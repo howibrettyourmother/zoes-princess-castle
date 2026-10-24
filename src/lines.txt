@@ -50,68 +50,68 @@ s_count|Let's count the stars!|kristin|1.05
 s_circle|Circle time! Let's sing!|kristin|1.05
 s_snack|Snack time! Yummy!|kristin|1.05
 s_good|Great job, Zoe!|kristin|1.05
-n1|One!|amy|1.25
-n2|Two!|amy|1.25
-n3|Three!|amy|1.25
-n4|Four!|amy|1.25
-n5|Five!|amy|1.25
-n6|Six!|amy|1.25
-n7|Seven!|amy|1.25
-n8|Eight!|amy|1.25
-n9|Nine!|amy|1.25
-n10|Ten!|amy|1.25
+n1|One!|kv|1.25
+n2|Two!|kv|1.25
+n3|Three!|kv|1.25
+n4|Four!|kv|1.25
+n5|Five!|kv|1.25
+n6|Six!|kv|1.25
+n7|Seven!|kv|1.25
+n8|Eight!|kv|1.25
+n9|Nine!|kv|1.25
+n10|Ten!|kv|1.25
 ln_A|Ay!|amy|1.2
 lf_A|Ay says ah, ah, like apple!|amy|1.15
-ln_B|Bee!|amy|1.2
-lf_B|Bee says buh, buh, like ball!|amy|1.15
-ln_C|See!|amy|1.2
-lf_C|See says kuh, kuh, like cat!|amy|1.15
-ln_D|Dee!|amy|1.2
-lf_D|Dee says duh, duh, like dog!|amy|1.15
-ln_E|Ee!|amy|1.2
-lf_E|Ee says eh, eh, like egg!|amy|1.15
-ln_F|Eff!|amy|1.2
-lf_F|Eff says fff, fff, like fish!|amy|1.15
-ln_G|Jee!|amy|1.2
-lf_G|Jee says guh, guh, like goat!|amy|1.15
-ln_H|Aitch!|amy|1.2
-lf_H|Aitch says huh, huh, like hat!|amy|1.15
-ln_I|Eye!|amy|1.2
-lf_I|Eye says ih, ih, like insect!|amy|1.15
-ln_J|Jay!|amy|1.2
-lf_J|Jay says juh, juh, like juice!|amy|1.15
-ln_K|Kay!|amy|1.2
-lf_K|Kay says kuh, kuh, like key!|amy|1.15
-ln_L|Ell!|amy|1.2
-lf_L|Ell says lll, lll, like lion!|amy|1.15
-ln_M|Em!|amy|1.2
-lf_M|Em says mmm, mmm, like moon!|amy|1.15
-ln_N|En!|amy|1.2
-lf_N|En says nnn, nnn, like nose!|amy|1.15
-ln_O|Oh!|amy|1.2
-lf_O|Oh says aw, aw, like octopus!|amy|1.15
-ln_P|Pee!|amy|1.2
-lf_P|Pee says puh, puh, like pig!|amy|1.15
-ln_Q|Cue!|amy|1.2
-lf_Q|Cue says kwuh, kwuh, like queen!|amy|1.15
-ln_R|Are!|amy|1.2
-lf_R|Are says rrr, rrr, like rainbow!|amy|1.15
-ln_S|Ess!|amy|1.2
-lf_S|Ess says sss, sss, like sun!|amy|1.15
-ln_T|Tee!|amy|1.2
-lf_T|Tee says tuh, tuh, like tiger!|amy|1.15
-ln_U|You!|amy|1.2
-lf_U|You says uh, uh, like umbrella!|amy|1.15
-ln_V|Vee!|amy|1.2
-lf_V|Vee says vvv, vvv, like violin!|amy|1.15
-ln_W|Double you!|amy|1.2
-lf_W|Double you says wuh, wuh, like whale!|amy|1.15
-ln_X|Ex!|amy|1.2
-lf_X|Ex says ks, ks, like box!|amy|1.15
-ln_Y|Why!|amy|1.2
-lf_Y|Why says yuh, yuh, like yarn!|amy|1.15
-ln_Z|Zee!|amy|1.2
-lf_Z|Zee says zzz, zzz, like zebra!|amy|1.15
+ln_B|Bee!|kv|1.2
+lf_B|Bee says buh, buh, like ball!|kv|1.15
+ln_C|See!|kv|1.2
+lf_C|See says kuh, kuh, like cat!|kv|1.15
+ln_D|Dee!|kv|1.2
+lf_D|Dee says duh, duh, like dog!|kv|1.15
+ln_E|Ee!|kv|1.2
+lf_E|Ee says eh, eh, like egg!|kv|1.15
+ln_F|Eff!|kv|1.2
+lf_F|Eff says fff, fff, like fish!|kv|1.15
+ln_G|Jee!|kv|1.2
+lf_G|Jee says guh, guh, like goat!|kv|1.15
+ln_H|Aitch!|kv|1.2
+lf_H|Aitch says huh, huh, like hat!|kv|1.15
+ln_I|Eye!|kv|1.2
+lf_I|Eye says ih, ih, like insect!|kv|1.15
+ln_J|Jay!|kv|1.2
+lf_J|Jay says juh, juh, like juice!|kv|1.15
+ln_K|Kay!|kv|1.2
+lf_K|Kay says kuh, kuh, like key!|kv|1.15
+ln_L|Ell!|kv|1.2
+lf_L|Ell says lll, lll, like lion!|kv|1.15
+ln_M|Em!|kv|1.2
+lf_M|Em says mmm, mmm, like moon!|kv|1.15
+ln_N|En!|kv|1.2
+lf_N|En says nnn, nnn, like nose!|kv|1.15
+ln_O|Oh!|kv|1.2
+lf_O|Oh says aw, aw, like octopus!|kv|1.15
+ln_P|Pee!|kv|1.2
+lf_P|Pee says puh, puh, like pig!|kv|1.15
+ln_Q|Cue!|kv|1.2
+lf_Q|Cue says kwuh, kwuh, like queen!|kv|1.15
+ln_R|Are!|kv|1.2
+lf_R|Are says rrr, rrr, like rainbow!|kv|1.15
+ln_S|Ess!|kv|1.2
+lf_S|Ess says sss, sss, like sun!|kv|1.15
+ln_T|Tee!|kv|1.2
+lf_T|Tee says tuh, tuh, like tiger!|kv|1.15
+ln_U|You!|kv|1.2
+lf_U|You says uh, uh, like umbrella!|kv|1.15
+ln_V|Vee!|kv|1.2
+lf_V|Vee says vvv, vvv, like violin!|kv|1.15
+ln_W|Double you!|kv|1.2
+lf_W|Double you says wuh, wuh, like whale!|kv|1.15
+ln_X|Ex!|kv|1.2
+lf_X|Ex says ks, ks, like box!|kv|1.15
+ln_Y|Why!|kv|1.2
+lf_Y|Why says yuh, yuh, like yarn!|kv|1.15
+ln_Z|Zee!|kv|1.2
+lf_Z|Zee says zzz, zzz, like zebra!|kv|1.15
 findl|Can you find the letter|amy|1.15
 trace|Trace it with your finger! Follow the sparkles!|amy|1.15
 ch1|Wonderful!|amy|1.15
@@ -160,23 +160,23 @@ water|Now water the flowers!|amy|1.15
 grow|Look! It grew!|amy|1.15
 bfly|A butterfly!|amy|1.15
 bouq|What a pretty bouquet!|amy|1.15
-c_pink|Pink!|amy|1.15
-c_purple|Purple!|amy|1.15
-c_blue|Blue!|amy|1.15
-c_yellow|Yellow!|amy|1.15
-c_red|Red!|amy|1.15
-c_green|Green!|amy|1.15
-c_white|White!|amy|1.15
-c_orange|Orange!|amy|1.15
+c_pink|Pink!|kv|1.15
+c_purple|Purple!|kv|1.15
+c_blue|Blue!|kv|1.15
+c_yellow|Yellow!|kv|1.15
+c_red|Red!|kv|1.15
+c_green|Green!|kv|1.15
+c_white|White!|kv|1.15
+c_orange|Orange!|kv|1.15
 c_navy|Dark blue!|amy|1.15
-c_brown|Brown!|amy|1.15
-c_black|Black!|amy|1.15
-c_rainbow|Rainbow!|amy|1.15
-sh_circle|Circle!|amy|1.15
-sh_square|Square!|amy|1.15
-sh_triangle|Triangle!|amy|1.15
-sh_star|Star!|amy|1.15
-sh_heart|Heart!|amy|1.15
+c_brown|Brown!|kv|1.15
+c_black|Black!|kv|1.15
+c_rainbow|Rainbow!|kv|1.15
+sh_circle|Circle!|kv|1.15
+sh_square|Square!|kv|1.15
+sh_triangle|Triangle!|kv|1.15
+sh_star|Star!|kv|1.15
+sh_heart|Heart!|kv|1.15
 op_big|Big!|amy|1.15
 op_small|Small!|amy|1.15
 op_up|Up!|amy|1.15
@@ -273,23 +273,93 @@ wd_yay|You wrote a word! Hooray!|amy|1.15
 ln_W2|Wilson!|amy|1.1
 fullname|Zoe Wilson! Trace your whole name!|amy|1.15
 fn_yay|Zoe Wilson! You wrote your whole name!|amy|1.15
-n11|11!|amy|1.25
-n12|12!|amy|1.25
-n13|13!|amy|1.25
-n14|14!|amy|1.25
-n15|15!|amy|1.25
-n16|16!|amy|1.25
-n17|17!|amy|1.25
-n18|18!|amy|1.25
-n19|19!|amy|1.25
-n20|20!|amy|1.25
-n21|21!|amy|1.25
-n22|22!|amy|1.25
-n23|23!|amy|1.25
-n24|24!|amy|1.25
-n25|25!|amy|1.25
-n26|26!|amy|1.25
-n27|27!|amy|1.25
-n28|28!|amy|1.25
-n29|29!|amy|1.25
-n30|30!|amy|1.25
+n11|11!|kv|1.25
+n12|12!|kv|1.25
+n13|13!|kv|1.25
+n14|14!|kv|1.25
+n15|15!|kv|1.25
+n16|16!|kv|1.25
+n17|17!|kv|1.25
+n18|18!|kv|1.25
+n19|19!|kv|1.25
+n20|20!|kv|1.25
+n21|21!|kv|1.25
+n22|22!|kv|1.25
+n23|23!|kv|1.25
+n24|24!|kv|1.25
+n25|25!|kv|1.25
+n26|26!|kv|1.25
+n27|27!|kv|1.25
+n28|28!|kv|1.25
+n29|29!|kv|1.25
+n30|30!|kv|1.25
+n31|Thirty-one!|kv
+n32|Thirty-two!|kv
+n33|Thirty-three!|kv
+n34|Thirty-four!|kv
+n35|Thirty-five!|kv
+n36|Thirty-six!|kv
+n37|Thirty-seven!|kv
+n38|Thirty-eight!|kv
+n39|Thirty-nine!|kv
+n40|Forty!|kv
+n41|Forty-one!|kv
+n42|Forty-two!|kv
+n43|Forty-three!|kv
+n44|Forty-four!|kv
+n45|Forty-five!|kv
+n46|Forty-six!|kv
+n47|Forty-seven!|kv
+n48|Forty-eight!|kv
+n49|Forty-nine!|kv
+n50|Fifty!|kv
+n51|Fifty-one!|kv
+n52|Fifty-two!|kv
+n53|Fifty-three!|kv
+n54|Fifty-four!|kv
+n55|Fifty-five!|kv
+n56|Fifty-six!|kv
+n57|Fifty-seven!|kv
+n58|Fifty-eight!|kv
+n59|Fifty-nine!|kv
+n60|Sixty!|kv
+n61|Sixty-one!|kv
+n62|Sixty-two!|kv
+n63|Sixty-three!|kv
+n64|Sixty-four!|kv
+n65|Sixty-five!|kv
+n66|Sixty-six!|kv
+n67|Sixty-seven!|kv
+n68|Sixty-eight!|kv
+n69|Sixty-nine!|kv
+n70|Seventy!|kv
+n71|Seventy-one!|kv
+n72|Seventy-two!|kv
+n73|Seventy-three!|kv
+n74|Seventy-four!|kv
+n75|Seventy-five!|kv
+n76|Seventy-six!|kv
+n77|Seventy-seven!|kv
+n78|Seventy-eight!|kv
+n79|Seventy-nine!|kv
+n80|Eighty!|kv
+n81|Eighty-one!|kv
+n82|Eighty-two!|kv
+n83|Eighty-three!|kv
+n84|Eighty-four!|kv
+n85|Eighty-five!|kv
+n86|Eighty-six!|kv
+n87|Eighty-seven!|kv
+n88|Eighty-eight!|kv
+n89|Eighty-nine!|kv
+n90|Ninety!|kv
+n91|Ninety-one!|kv
+n92|Ninety-two!|kv
+n93|Ninety-three!|kv
+n94|Ninety-four!|kv
+n95|Ninety-five!|kv
+n96|Ninety-six!|kv
+n97|Ninety-seven!|kv
+n98|Ninety-eight!|kv
+n99|Ninety-nine!|kv
+n100|One hundred!|kv
