@@ -18,7 +18,7 @@ const AUD=(()=>{let C=null,M,mus,sfx,vox,clips={},un=false,cur=null,muted=localS
   document.addEventListener('visibilitychange',()=>{if(!C)return;if(document.hidden){C.suspend().catch(()=>{});silentEl&&silentEl.pause()}else if(un){C.resume().catch(()=>{})}});
   const ok=()=>C&&C.state==='running';
   let _vk='',_vt=0,_ve=0,_sx=[];function sfxOK(){const n=Date.now();_sx=_sx.filter(x=>n-x<350);if(_sx.length>=3)return false;_sx.push(n);return true}
-  let _nk='',_np=0,_se=0;function say(k,tries){if(!C){return}const isN=/^n\d+$/.test(k);if(isN){if(!tries)_nk=k;else if(k!==_nk)return;if(!_np){_np=1;for(let i=1;i<=30;i++)loadClip('n'+i)}const nn=+k.slice(1);if(nn<100){loadClip('n'+(nn+1));loadClip('n'+Math.min(nn+2,100))}}if(!clips[k]){loadClip(k);if((tries||0)<20)setTimeout(()=>say(k,(tries||0)+1),150);return}if(!ok())return;if(!isN&&!/^(ln_|wd_|nm_|lf_|num)/.test(k)){const n=Date.now();if(k===_vk&&n-_vt<4000)return;if(n<_ve&&n-_vt<1200)return;_vk=k;_vt=n;_ve=n+clips[k].duration*1000}
+  let _nk='',_np=0,_se=0;function say(k,tries){if(!C){return}const isN=/^n\d+$/.test(k);if(isN){if(!tries)_nk=k;else if(k!==_nk)return;if(!_np){_np=1;for(let i=1;i<=30;i++)loadClip('n'+i)}const nn=+k.slice(1);if(nn<30){loadClip('n'+(nn+1));loadClip('n'+Math.min(nn+2,100))}}if(!clips[k]){loadClip(k);if((tries||0)<20)setTimeout(()=>say(k,(tries||0)+1),150);return}if(!ok())return;if(!isN&&!/^(ln_|wd_|nm_|lf_|num)/.test(k)){const n=Date.now();if(k===_vk&&n-_vt<4000)return;if(n<_ve&&n-_vt<1200)return;_vk=k;_vt=n;_ve=n+clips[k].duration*1000}
     try{if(cur)cur.stop()}catch(e){}const s=C.createBufferSource();s.buffer=clips[k];s.connect(vox);s.start();cur=s;_se=C.currentTime+clips[k].duration;
     mus.gain.setTargetAtTime(.08,C.currentTime,.05);mus.gain.setTargetAtTime(.22,C.currentTime+clips[k].duration,.2)}
   function tone(m,t,v,d,type,out){const g=C.createGain(),o=C.createOscillator();o.type=type||'sine';o.frequency.value=mtof(m);g.gain.setValueAtTime(.0001,t);g.gain.linearRampToValueAtTime(v,t+.005);g.gain.exponentialRampToValueAtTime(.0001,t+d);o.connect(g);g.connect(out||sfx);o.start(t);o.stop(t+d+.05);
@@ -54,7 +54,16 @@ const AUD=(()=>{let C=null,M,mus,sfx,vox,clips={},un=false,cur=null,muted=localS
       if(s.beat&&step%2===0){const g=C.createGain(),o=C.createOscillator();o.frequency.setValueAtTime(140,nextT);o.frequency.exponentialRampToValueAtTime(50,nextT+.12);g.gain.setValueAtTime(step%4===0?.5:.15,nextT);g.gain.exponentialRampToValueAtTime(.0001,nextT+.15);o.connect(g);g.connect(mus);o.start(nextT);o.stop(nextT+.2)}
       nextT+=e;step++}}
   const _rs={};function rec(k,tries){if(!C)return;if(!clips[k]){loadClip(k);if((tries||0)<20)setTimeout(()=>rec(k,(tries||0)+1),150);return}if(!ok())return;const gk=/^meow/.test(k)?'meow':k;if(_rs[gk]){try{_rs[gk].stop()}catch(e){}}else if(!sfxOK())return;const s=C.createBufferSource();s.buffer=clips[k];s.connect(sfx);s.start();_rs[gk]=s;s.onended=()=>{if(_rs[gk]===s)_rs[gk]=null};return s}
-  return {say,rec,dur:k=>clips[k]?clips[k].duration:2.5,load:loadClip,note:(m,d,v,w)=>{if(ok())tone(m,C.currentTime+.02,v||.2,d||.5,w)},sfx:k=>{try{ok()&&sfxOK()&&S[k]()}catch(e){}},music:k=>{if(song!==k){song=k;step=0}},
+  // counting rule (Brett, 2026-10-24): speak numbers only while counting a small set (<=20); never repeat a number already said this round;
+  // taps <0.35 s apart are shown, not spoken, and the final total is said once after the burst; numbers cut each other (never stack)
+  const CR={said:new Set(),lastT:-9,pend:0,tm:0,max:20};
+  function count(n,reset){if(reset||n<=1)CR.said.clear();const t=performance.now()/1000,fast=t-CR.lastT<0.35;CR.lastT=t;clearTimeout(CR.tm);
+    if(!(n>=1&&n<=CR.max))return false;
+    if(fast){CR.pend=n;CR.tm=setTimeout(()=>{const p=CR.pend;CR.pend=0;if(p&&!CR.said.has(p)&&numSay(p))CR.said.add(p)},450);return true}
+    if(CR.said.has(n))return true;const ok=numSay(n);if(ok)CR.said.add(n);return ok}
+  count.reset=()=>{CR.said.clear();CR.pend=0;clearTimeout(CR.tm)};
+  function numSay(n){say('n'+n);return true}
+  return {say,count,rec,dur:k=>clips[k]?clips[k].duration:2.5,load:loadClip,note:(m,d,v,w)=>{if(ok())tone(m,C.currentTime+.02,v||.2,d||.5,w)},sfx:k=>{try{ok()&&sfxOK()&&S[k]()}catch(e){}},music:k=>{if(song!==k){song=k;step=0}},
     get song(){return song},get speaking(){return !!C&&C.currentTime<_se},get muted(){return muted},toggle(){muted=!muted;localStorage.setItem('zpc_mute',muted?'1':'0');if(M)M.gain.value=muted?0:1;return muted},unlock}})();
 
 // ================= characters (original SVG art) =================
@@ -244,7 +253,7 @@ function ride(r){r.innerHTML='';const back=btn(r,'🏰','',()=>go('hub'));back.c
     if(zi.complete)g.drawImage(zi,ux-50,uy-300+bob,130,215);if(ui.complete)g.drawImage(ui,ux-130,uy-210+bob,250,220);
     g.font='80px sans-serif';g.textAlign='center';g.textBaseline='middle';
     items=items.filter(it=>{it.x-=dt*330;const iy=it.y+Math.sin(now/300+it.ph)*14;
-      if(Math.hypot(it.x-(ux+20),iy-(uy-140))<130){got++;upd();AUD.sfx('chime');if(got<=100)AUD.say('n'+got);else if(got%3===0)AUD.say(it.k==='⭐'?'star':'heart');burst(r,it.x,iy,[it.k,'✨'],6);if(got>=goal)finish();return false}
+      if(Math.hypot(it.x-(ux+20),iy-(uy-140))<130){got++;upd();AUD.sfx('chime');if(!AUD.count(got,got===1)&&got%3===0)AUD.say(it.k==='⭐'?'star':'heart');burst(r,it.x,iy,[it.k,'✨'],6);if(got>=goal)finish();return false}
       g.fillText(it.k,it.x,iy);return it.x>-100});
     requestAnimationFrame(frame)}
   function finish(){if(done)return;done=true;AUD.music('ball');setTimeout(()=>AUD.say('great'),200);stickerUp(r);
