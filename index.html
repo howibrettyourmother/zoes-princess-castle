@@ -28,6 +28,7 @@ iv.call(W,function(){if(!hid)ctxs.forEach(function(c){if(c.__agWant&&c.state==='
 AG.hide=hide;AG.show=show})();</script>
 
 
+
 <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
 <title>Zoe's Princess Castle 👑🦄</title>
 <meta name="description" content="A sparkly, tap-only princess game for Zoe: ride unicorns, dance in the ballroom, tea parties, dress-up and friends. A Games by Dad game.">
@@ -595,10 +596,10 @@ SCR.hub.show=function(r){AUD.music('home');
   if(SAVE.nameSign)nameSign(r,W*.1,H-420,150);
   const items=[['🛏️','bed','bed'],['🔤','abc','abc'],['✍️','name','nm_go'],['🎂','bday','bd'],['🦄','ride','ride'],['🏇','race','race'],
     ['🚌','bus','bus'],['🏫','school','school'],['🛁','bath','bath'],['🐴','stable','stb'],['🐮','farm','farm'],['🌷','garden','gdn'],['🐱','kitty','kit'],
-    ['💃','ball','ball'],['🫖','tea','tea'],['👗','dress','dress'],['💌','friends','friends'],['🙈','hide','hide'],['📒','album','album'],['🖼️','deco','deco'],['😻','pets','pets']];
-  const cols=items.length>18?7:6,x0=Math.max(W*.2,W-40-cols*150-(cols-1)*16),tw=W-30-x0,gx=14,bw=Math.min(150,(tw-(cols-1)*gx)/cols),bh=Math.min(160,bw*1.07),gy=18,y0=Math.max(140,(H-(3*bh+2*gy))/2+40),x1=x0+(tw-(cols*bw+(cols-1)*gx))/2;
-  items.forEach(([e,k,v],i)=>{const b=btn(r,e,`left:${x1+(i%cols)*(bw+gx)}px;top:${y0+(i/cols|0)*(bh+gy)}px`,()=>{AUD.say(v);go(k)});b.classList.add('hub');b.style.width=bw+'px';b.style.height=bh+'px';b.style.fontSize=(bw*.6|0)+'px';b.dataset.k=k;const lb=document.createElement('i');lb.className='lbl';lb.textContent={bed:'Bedroom',abc:'ABC & 123',name:'Write Name',bday:'Birthday',ride:'Unicorn Ride',race:'Race',bus:'Bus',school:'School',bath:'Bath',stable:'Stable',farm:'Animal Sounds',garden:'Garden',kitty:'Kitty Dress-Up',ball:'Ballroom',tea:'Tea Party',dress:'Dress Up',friends:'Friends',hide:'Hide & Seek',album:'Sticker Book',deco:'Decorate',pets:'Pet Kitties'}[k]||'';lb.style.fontSize=Math.max(15,bw*.13|0)+'px';b.style.paddingBottom=(bw*.14|0)+'px';b.appendChild(lb);
-    if(k==='bday'&&!(SAVE.bd&&SAVE.bd.day===TODAY&&SAVE.bd.open.length===3))b.classList.add('pulse');if(k==='name'&&!SAVE.nameSign)b.classList.add('pulse')});
+    ['💃','ball','ball'],['🫖','tea','tea'],['👗','dress','dress'],['💌','friends','friends'],['🙈','hide','hide'],['📒','album','album'],['🖼️','deco','deco'],['😻','pets','pets'],['🎨','colors','c_rainbow'],['🔷','shapes','sh_star'],['💎','jewels','star']];
+  const cols=items.length>18?7:6,x0=Math.max(W*.2,W-40-cols*150-(cols-1)*16),tw=W-30-x0,gx=14,bw=Math.min(150,(tw-(cols-1)*gx)/cols),bh=Math.min(160,bw*1.07),gy=18,y0=Math.max(90,(H-(4*bh+3*gy))/2+20),x1=x0+(tw-(cols*bw+(cols-1)*gx))/2;
+  items.forEach(([e,k,v],i)=>{const b=btn(r,e,`left:${x1+(i%cols)*(bw+gx)}px;top:${y0+(i/cols|0)*(bh+gy)}px`,()=>{AUD.say(v);go(k)});b.classList.add('hub');b.style.width=bw+'px';b.style.height=bh+'px';b.style.fontSize=(bw*.6|0)+'px';b.dataset.k=k;const lb=document.createElement('i');lb.className='lbl';lb.textContent={bed:'Bedroom',abc:'ABC & 123',name:'Write Name',bday:'Birthday',ride:'Unicorn Ride',race:'Race',bus:'Bus',school:'School',bath:'Bath',stable:'Stable',farm:'Animal Sounds',garden:'Garden',kitty:'Kitty Dress-Up',ball:'Ballroom',tea:'Tea Party',dress:'Dress Up',friends:'Friends',hide:'Hide & Seek',album:'Sticker Book',deco:'Decorate',pets:'Pet Kitties',colors:'Color Party',shapes:'Shape Parade',jewels:'Jewel Hunt'}[k]||'';lb.style.fontSize=Math.max(15,bw*.13|0)+'px';b.style.paddingBottom=(bw*.14|0)+'px';b.appendChild(lb);
+    if(k==='bday'&&!(SAVE.bd&&SAVE.bd.day===TODAY&&SAVE.bd.open.length===3))b.classList.add('pulse');if(k==='name'&&!SAVE.nameSign)b.classList.add('pulse');if(k==='colors'&&Object.keys(SAVE.cm||{}).length<4)b.classList.add('pulse');if(k==='shapes'&&Object.keys(SAVE.sm||{}).length<2)b.classList.add('pulse');if(k==='jewels'&&(SAVE.jewels||[]).length<1)b.classList.add('pulse')});
   // easter egg: a kitty peeks out from a random spot
   const spots=[[W*.25,H-60],[W-90,H-50],[x1+bw*3,y0-60]],sp=pick(spots);const pk=el('div',r,`position:absolute;left:${sp[0]-50}px;top:${sp[1]-60}px;width:100px;height:90px;z-index:15;cursor:pointer`,kitty(SAVE.kitSel||'doodle',{}).replace('viewBox="0 0 200 260"','viewBox="30 20 140 125"'));pk.firstChild.style.cssText='width:100%;height:100%';pk.className='bob';
   tap(pk,()=>{AUD.sfx('meow');anim(pk,'hop');burst(r,sp[0],sp[1]-40,['💖','🐾'],6);if(SAVE.peekSt!==TODAY){SAVE.peekSt=TODAY;save();later(800,()=>stickerUp(r))}});
@@ -948,6 +949,102 @@ SCR.fullname={bg:'bedroom2',show(r){AUD.music('home');AUD.say('fullname');
 // links: Words from Letters & Numbers and from the name screen
 (function(){const a=SCR.abc.show;SCR.abc.show=function(r){a.call(this,r);const b=btn(r,'📝',`left:${W-170}px;top:130px;width:140px;height:130px;font-size:74px;z-index:40`,()=>{AUD.say('words');go('words')});b.classList.add('hub')};
   const n=SCR.name.show;SCR.name.show=function(r){n.call(this,r);btn(r,'📝',`left:${W-190}px;top:280px;width:160px;height:110px;font-size:60px;z-index:40`,()=>go('words'));btn(r,'<span style="font-size:30px;line-height:1">ZOE<br>WILSON</span>',`left:${W-190}px;top:410px;width:160px;height:110px;z-index:40`,()=>go('fullname'))}})();
+
+// ================= v4 Round 2: Color Party, Shape Parade, Jewel Hunt (sneaky learning) =================
+ROOM_E.colors='🎨';ROOM_E.shapes='🔷';ROOM_E.jewels='💎';
+SAVE.cm=SAVE.cm||{};SAVE.sm=SAVE.sm||{};SAVE.jewels=SAVE.jewels||[];
+(function(){const _hub=SCR.hub.show;SCR.hub.show=function(r){_hub.call(this,r);
+  SAVE.cm=SAVE.cm||{};SAVE.sm=SAVE.sm||{};SAVE.jewels=SAVE.jewels||[];
+  el('div',r,`position:absolute;left:${W*.1-40}px;top:40px;padding:6px 16px;border-radius:24px;background:rgba(255,255,255,.9);font-size:28px;color:#b03a8a;z-index:40`,`💎 ${(SAVE.jewels||[]).length}/3`);
+}})();
+
+// Color Party: tap the named color among floating jewels (1-10 rounds, saves color mastery)
+SCR.colors={bg:'ballroom',show(r){AUD.music('ball');AUD.say('c_rainbow');SAVE.cm=SAVE.cm||{};
+  const COLS=[['c_red','#ff6b6b','❤️'],['c_blue','#6cc6ff','💙'],['c_yellow','#ffd34d','💛'],['c_green','#7ee08a','💚'],['c_pink','#ff8fc8','💗'],['c_purple','#b28dff','💜'],['c_orange','#ffb347','🧡'],['c_white','#ffffff','🤍']];
+  let round=0,got=0;const N=8;
+  const hud=el('div',r,`position:absolute;left:${W/2-160}px;top:36px;width:320px;text-align:center;font-size:40px;color:#fff;-webkit-text-stroke:4px #c2378f;paint-order:stroke fill;z-index:50`,'');
+  const board=el('div',r,'position:absolute;inset:0;z-index:5');
+  function next(){board.innerHTML='';if(round>=N){cheer();confetti(r,28);daily(r,'colSt');if(got>=6){SAVE.jewels=SAVE.jewels||[];if(SAVE.jewels.indexOf('color')<0){SAVE.jewels.push('color');save()}later(600,()=>stickerUp(r))}later(1800,()=>again(r,'colors'));return}
+    const target=COLS[round%COLS.length];const opts=shuf(COLS).slice(0,5);if(!opts.find(c=>c[0]===target[0]))opts[0]=target;
+    hud.textContent='Find '+target[2]+'!';AUD.say(target[0]);
+    opts.forEach((c,i)=>{const x=W*.18+(i%5)*(W*.14),y=H*.35+(i>4?0:Math.sin(i)*40);
+      const b=el('div',board,`position:absolute;left:${x}px;top:${y}px;width:110px;height:110px;border-radius:50%;background:${c[1]};border:8px solid #fff;box-shadow:0 8px 0 rgba(0,0,0,.15);font-size:54px;line-height:94px;text-align:center;cursor:pointer;z-index:10`,c[2]);
+      b.className='bob';b.style.animationDelay=(i*.15)+'s';
+      tap(b,()=>{if(c[0]===target[0]){AUD.sfx('chime');AUD.say(c[0]);burst(r,x+55,y+55,['✨','💖'],8);anim(b,'hop');SAVE.cm[c[0]]=(SAVE.cm[c[0]]||0)+1;save();got++;round++;later(700,next)}
+        else{AUD.sfx('pop');anim(b,'wob');AUD.say(c[0])}})})}
+  next()}};
+
+// Shape Parade: match spoken shape by tapping parade floats
+SCR.shapes={bg:'castle',show(r){AUD.music('home');AUD.say('sh_star');SAVE.sm=SAVE.sm||{};
+  const SHP=[['sh_circle','●','Circle'],['sh_square','■','Square'],['sh_triangle','▲','Triangle'],['sh_star','★','Star'],['sh_heart','♥','Heart']];
+  let round=0,got=0;const N=8;
+  const hud=el('div',r,`position:absolute;left:${W/2-180}px;top:40px;width:360px;text-align:center;font-size:44px;color:#fff;-webkit-text-stroke:4px #7a4cff;paint-order:stroke fill;z-index:50`,'');
+  const board=el('div',r,'position:absolute;inset:0;z-index:5');
+  function next(){board.innerHTML='';if(round>=N){cheer();confetti(r,28);daily(r,'shpSt');if(got>=6){SAVE.jewels=SAVE.jewels||[];if(SAVE.jewels.indexOf('shape')<0){SAVE.jewels.push('shape');save()}later(600,()=>stickerUp(r))}later(1800,()=>again(r,'shapes'));return}
+    const target=SHP[round%SHP.length];const opts=shuf(SHP.slice());
+    hud.textContent='Tap the '+target[2]+'!';AUD.say(target[0]);
+    opts.forEach((s,i)=>{const x=W*.15+i*(W*.15),y=H*.42+Math.sin(i*1.2)*30;
+      const b=el('div',board,`position:absolute;left:${x}px;top:${y}px;width:120px;height:120px;border-radius:28px;background:linear-gradient(#fff6c9,#ffd9f0);border:6px solid #ffd34d;font-size:72px;line-height:108px;text-align:center;color:#c98a4b;cursor:pointer;z-index:10`,s[1]);
+      b.className='bob';tap(b,()=>{if(s[0]===target[0]){AUD.sfx('chime');AUD.say(s[0]);burst(r,x+60,y+60,['⭐','✨'],8);SAVE.sm[s[0]]=(SAVE.sm[s[0]]||0)+1;save();got++;round++;later(700,next)}
+        else{AUD.sfx('pop');anim(b,'wob');AUD.say(s[0])}})})}
+  next()}};
+
+// Jewel Hunt: weave counting 1-10 + letters A-Z + colors as castle treasure hunt
+SCR.jewels={bg:'castle',show(r){AUD.music('home');AUD.say('star');SAVE.jewels=SAVE.jewels||[];SAVE.jh=SAVE.jh||0;
+  let round=0,score=0;const N=10;
+  const hud=el('div',r,`position:absolute;left:${W/2-200}px;top:36px;width:400px;text-align:center;font-size:36px;color:#fff;-webkit-text-stroke:4px #c2378f;paint-order:stroke fill;z-index:50`,'💎 Jewel Hunt!');
+  const board=el('div',r,'position:absolute;inset:0;z-index:5');
+  const kinds=['count','letter','color'];
+  function next(){board.innerHTML='';if(round>=N){cheer();confetti(r,32);daily(r,'jwlSt');SAVE.jh=(SAVE.jh||0)+score;if(SAVE.jewels.indexOf('hunt')<0&&score>=7){SAVE.jewels.push('hunt');save()}
+    if(score>=7)later(700,()=>stickerUp(r));later(2000,()=>again(r,'jewels'));
+    el('div',r,`position:absolute;left:${W/2-120}px;top:${H/2-40}px;font-size:56px;z-index:60;color:#fff;-webkit-text-stroke:4px #c2378f`,`💎 ${score}/${N}`);return}
+    const kind=kinds[round%3];
+    if(kind==='count'){const n=1+(Math.random()*10|0);hud.textContent='Count the gems! Find '+n;AUD.say('n'+n);
+      const total=6+(Math.random()*5|0);let placed=0;const spots=[];
+      for(let i=0;i<total;i++){const is=i<n;const x=80+Math.random()*(W-200),y=140+Math.random()*(H-280);
+        const g=el('div',board,`position:absolute;left:${x}px;top:${y}px;font-size:64px;cursor:pointer;z-index:10`,is?'💎':'🪨');
+        tap(g,()=>{if(g.dataset.u)return;g.dataset.u=1;if(is){placed++;AUD.say('n'+placed);AUD.sfx('chime');burst(r,x+20,y,['✨'],4);g.style.opacity=.35;
+          if(placed===n){score++;SAVE.nm[n]=1;save();round++;later(600,next)}}else{AUD.sfx('pop');anim(g,'wob')}})}}
+    else if(kind==='letter'){const LTR=ABC[Math.random()*26|0];hud.textContent='Find the letter '+LTR+'!';AUD.say('ln_'+LTR);
+      const opts=shuf([LTR,...shuf(ABC.filter(c=>c!==LTR)).slice(0,4)]);
+      opts.forEach((c,i)=>{const x=W*.15+i*(W*.15),y=H*.45;
+        const b=btn(board,c,`left:${x}px;top:${y}px;width:110px;height:110px;font-size:64px`,()=>{if(c===LTR){AUD.sfx('chime');AUD.say('lf_'+c);SAVE.lm[c]=(SAVE.lm[c]||0)+1;save();score++;burst(r,x+55,y+55,['⭐'],6);round++;later(700,next)}else{AUD.sfx('pop');AUD.say('ln_'+c)}});b.classList.add('hub')})}
+    else{const COLS=[['c_red','#ff6b6b'],['c_blue','#6cc6ff'],['c_yellow','#ffd34d'],['c_green','#7ee08a'],['c_pink','#ff8fc8'],['c_purple','#b28dff']];
+      const target=COLS[Math.random()*COLS.length|0];hud.textContent='Tap the '+target[0].slice(2)+' jewel!';AUD.say(target[0]);
+      const opts=shuf(COLS);
+      opts.forEach((c,i)=>{const x=W*.12+i*(W*.14),y=H*.42;
+        const b=el('div',board,`position:absolute;left:${x}px;top:${y}px;width:100px;height:100px;border-radius:50%;background:${c[1]};border:6px solid #fff;cursor:pointer;z-index:10;font-size:48px;line-height:88px;text-align:center`,'💎');
+        tap(b,()=>{if(c[0]===target[0]){AUD.sfx('chime');AUD.say(c[0]);SAVE.cm[c[0]]=(SAVE.cm[c[0]]||0)+1;save();score++;burst(r,x+50,y+50,['💖'],6);round++;later(700,next)}else{AUD.sfx('pop');AUD.say(c[0]);anim(b,'wob')}})})}}
+  next()}};
+
+// Tea party: upgrade shape cookies into a quick match-3 shape snack game
+(function(){const s=SCR.tea.show;SCR.tea.show=function(r){s.call(this,r);
+  const play=btn(r,'🍪',`left:24px;top:${H-140}px;width:120px;height:110px;font-size:60px;z-index:45`,()=>{
+    const ov=el('div',r,'position:absolute;inset:0;background:rgba(255,240,250,.92);z-index:80');
+    const SHP=[['sh_circle','●'],['sh_square','■'],['sh_triangle','▲'],['sh_heart','♥'],['sh_star','★']];
+    let need=shuf(SHP)[0],got=0;const title=el('div',ov,`position:absolute;left:0;right:0;top:40px;text-align:center;font-size:40px;color:#b03a8a`,'Feed me '+need[1]+' cookies!');AUD.say(need[0]);
+    for(let i=0;i<10;i++){const s2=SHP[i%5];const c=el('div',ov,`position:absolute;left:${80+(i%5)*140}px;top:${160+((i/5)|0)*140}px;width:100px;height:100px;font-size:70px;line-height:100px;text-align:center;color:#c98a4b;cursor:pointer`,s2[1]);
+      tap(c,()=>{if(s2[0]===need[0]){c.remove();AUD.say(s2[0]);AUD.sfx('chime');got++;AUD.say('n'+got);if(got>=3){cheer();confetti(ov,16);SAVE.sm[need[0]]=(SAVE.sm[need[0]]||0)+1;save();daily(ov,'teaSh');later(1200,()=>ov.remove())}}else{anim(c,'wob');AUD.say(s2[0])}})}
+    btn(ov,'🏰',`left:${W/2-60}px;top:${H-140}px;width:120px;height:100px;font-size:60px`,()=>ov.remove())});
+  play.classList.add('pulse')}})();
+
+// Garden: after bloom count, offer letter flower pick
+(function(){const s=SCR.garden.show;SCR.garden.show=function(r){s.call(this,r);
+  btn(r,'🔤',`left:${W-150}px;top:250px;width:120px;height:104px;font-size:56px;z-index:40`,()=>{
+    const LTR=ABC[Math.random()*26|0];AUD.say('ln_'+LTR);
+    const ov=el('div',r,'position:absolute;inset:0;background:rgba(200,255,220,.9);z-index:80');
+    el('div',ov,`position:absolute;left:0;right:0;top:50px;text-align:center;font-size:44px;color:#2a7a3a`,'Pick flower '+LTR+'!');
+    const opts=shuf([LTR,...shuf(ABC.filter(c=>c!==LTR)).slice(0,4)]);
+    opts.forEach((c,i)=>{btn(ov,c+'🌸',`left:${W*.12+i*(W*.15)}px;top:${H*.4}px;width:120px;height:120px;font-size:48px`,()=>{if(c===LTR){AUD.sfx('chime');SAVE.lm[c]=(SAVE.lm[c]||0)+1;save();cheer();confetti(ov,12);later(1000,()=>ov.remove())}else AUD.say('ln_'+c)})});
+    btn(ov,'🏰',`left:${W/2-60}px;top:${H-140}px;width:120px;height:100px;font-size:60px`,()=>ov.remove())})}})();
+
+// Album shows jewel + color/shape mastery
+(function(){const s=SCR.album.show;SCR.album.show=function(r){s.call(this,r);
+  const j=(SAVE.jewels||[]).map(k=>({color:'💎',shape:'🔷',hunt:'👑'}[k]||'⭐')).join(' ')||'—';
+  el('div',r,`position:absolute;left:40px;top:40px;padding:8px 18px;border-radius:24px;background:rgba(255,255,255,.9);font-size:28px;color:#b03a8a;z-index:50`,'Jewels '+j);
+  const nC=Object.keys(SAVE.cm||{}).length,nS=Object.keys(SAVE.sm||{}).length;
+  el('div',r,`position:absolute;right:40px;top:40px;padding:8px 18px;border-radius:24px;background:rgba(255,255,255,.9);font-size:26px;color:#7a4cff;z-index:50`,`🎨 ${nC}/8  🔷 ${nS}/5`);
+}})();
 
 addEventListener('resize',fit);addEventListener('orientationchange',()=>setTimeout(fit,200));
 document.addEventListener('gesturestart',e=>e.preventDefault());
