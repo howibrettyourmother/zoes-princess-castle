@@ -43,13 +43,15 @@ SCR.jewels={bg:'castle',show(r){AUD.music('home');AUD.say('star');SAVE.jewels=SA
   const hud=el('div',r,`position:absolute;left:${W/2-200}px;top:36px;width:400px;text-align:center;font-size:36px;color:#fff;-webkit-text-stroke:4px #c2378f;paint-order:stroke fill;z-index:50`,'💎 Jewel Hunt!');
   const board=el('div',r,'position:absolute;inset:0;z-index:5');
   const kinds=['count','letter','color'];
-  function next(){board.innerHTML='';if(round>=N){cheer();confetti(r,32);daily(r,'jwlSt');SAVE.jh=(SAVE.jh||0)+score;if(SAVE.jewels.indexOf('hunt')<0&&score>=7){SAVE.jewels.push('hunt');save()}
+  function next(){board.innerHTML='';if(round>=N){hud.textContent='💎 Treasure found!';cheer();confetti(r,32);daily(r,'jwlSt');SAVE.jh=(SAVE.jh||0)+score;if(SAVE.jewels.indexOf('hunt')<0&&score>=7){SAVE.jewels.push('hunt');save()}
     if(score>=7)later(700,()=>stickerUp(r));later(2000,()=>again(r,'jewels'));
     el('div',r,`position:absolute;left:${W/2-120}px;top:${H/2-40}px;font-size:56px;z-index:60;color:#fff;-webkit-text-stroke:4px #c2378f`,`💎 ${score}/${N}`);return}
     const kind=kinds[round%3];
     if(kind==='count'){const n=1+(Math.random()*10|0);hud.textContent='Count the gems! Find '+n;AUD.say('n'+n);
-      const total=6+(Math.random()*5|0);let placed=0;const spots=[];
-      for(let i=0;i<total;i++){const is=i<n;const x=80+Math.random()*(W-200),y=140+Math.random()*(H-280);
+      // always draw at least n gems (plus 2-4 rocks), on a jittered grid so nothing overlaps or hides a gem
+      const total=n+2+(Math.random()*3|0);let placed=0;const COLS=8,ROWS=4,cw=(W-200)/COLS,ch=(H-300)/ROWS;
+      const spots=shuf([...Array(COLS*ROWS).keys()]).slice(0,total);
+      for(let i=0;i<total;i++){const is=i<n;const cx=spots[i]%COLS,cy=spots[i]/COLS|0;const x=80+cx*cw+Math.random()*Math.max(0,cw-80),y=150+cy*ch+Math.random()*Math.max(0,ch-80);
         const g=el('div',board,`position:absolute;left:${x}px;top:${y}px;font-size:64px;cursor:pointer;z-index:10`,is?'💎':'🪨');
         tap(g,()=>{if(g.dataset.u)return;g.dataset.u=1;if(is){placed++;AUD.say('n'+placed);AUD.sfx('chime');burst(r,x+20,y,['✨'],4);g.style.opacity=.35;
           if(placed===n){score++;SAVE.nm[n]=1;save();round++;later(600,next)}}else{AUD.sfx('pop');anim(g,'wob')}})}}
