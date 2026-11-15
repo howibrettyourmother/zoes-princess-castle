@@ -85,7 +85,7 @@ canvas{position:absolute;top:0;right:0;bottom:0;left:0;width:100%;height:100%}
 /*__GAME__*/
 </script>
 <script>if('serviceWorker' in navigator&&location.protocol==='https:')navigator.serviceWorker.register('sw.js').catch(()=>{})</script>
-<script>/*bgm*/window.BGM_CFG={"id":"zoes-princess-castle","base":"music/","v":"20261023m","tracks":{"home":[96.0,1.0],"ball":[85.714286,1.0],"bday":[99.310345,1.0],"wheels":[91.428571,1.0],"lull":[80.0,1.0]},"map":{"":""},"pos":"right:12px;top:70px","poll":function(){if(typeof AUD==='undefined')return{};return{area:AUD.song||'',speaking:AUD.speaking,muted:AUD.muted}}};</script><script src="music/bgm.js?v=20261023m" defer></script>
+<script>/*bgm*/window.BGM_CFG={"id":"zoes-princess-castle","base":"music/","v":"20261115bgm","tracks":{"home":[48.0, 1.0],"ball":[48.0, 1.0],"bday":[48.0, 1.0],"wheels":[48.0, 1.0],"lull":[48.0, 1.0]},"map":{"":""},"pos":"right:12px;top:70px","poll":function(){if(typeof AUD==='undefined')return{};return{area:AUD.song||'',speaking:AUD.speaking,muted:AUD.muted}}};</script><script src="music/bgm.js?v=20261115bgm" defer></script>
 <script>/*sw-reload*/(function(){if(!('serviceWorker' in navigator))return;var sw=navigator.serviceWorker,had=!!sw.controller,done=false;
 sw.addEventListener('controllerchange',function(){if(!had){had=true;return}if(done)return;done=true;try{if(sessionStorage.swReloaded&&Date.now()-sessionStorage.swReloaded<10000)return;sessionStorage.swReloaded=Date.now()}catch(e){}location.reload()});
 function up(){if(sw.getRegistration)sw.getRegistration().then(function(g){if(g)g.update()}).catch(function(){})}
