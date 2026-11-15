@@ -3,7 +3,7 @@ const TODAY=new Date().toLocaleDateString('en-CA');
 function rng(seed){let s=0;for(const c of seed)s=(s*31+c.charCodeAt(0))>>>0;return()=>{s=(s*1664525+1013904223)>>>0;return s/4294967296}}
 const sayQ=(ks,gap)=>ks.forEach((k,i)=>timers.push(setTimeout(()=>{if(cur)AUD.say(k)},i*(gap||1700))));
 // kitty friends (same looks as Doodle & Zoe's kitties)
-const KITS={doodle:{c:'#f5a142',d:'#d9822b',w:'#fff3e0',eye:'#6d4c41',ear:'#ffb3c7',bow:'#ff5c9e',stripes:1},
+const KITS={doodle:{c:'#f5a142',d:'#d9822b',w:'#fffaf3',eye:'#6d4c41',ear:'#ffb3c7',bow:'#ff5c9e',stripes:1,chonk:1,blaze:1},
   snow:{c:'#fffdfb',d:'#e6dce3',w:'#ffffff',eye:'#64b5f6',ear:'#ffc1d6',fluff:1},
   galaxy:{c:'#9b7be0',d:'#7a5cc8',w:'#dccbff',eye:'#ffd54f',ear:'#ffc1e3',stars:1},
   tiny:{c:'#bbb6c1',d:'#9e98a6',w:'#f6f3f8',eye:'#81c784',ear:'#ffc1d6',small:1},
@@ -21,14 +21,15 @@ function crownSvg(c,x,y,s){s=s||1;const g=`transform="translate(${x},${y}) scale
 function kitty(k,o){const K=KITS[k];o=o||{};let s=`<svg viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg">`;
   if(o.p)s+=`<path d="M62,128 Q100,118 138,128 L176,252 Q100,262 24,252Z" fill="${o.p}" stroke="rgba(0,0,0,.12)" stroke-width="3"/>`;
   s+=`<path d="M145,225 Q195,215 180,160 Q172,140 160,150" fill="none" stroke="${K.d}" stroke-width="18" stroke-linecap="round"/>`;
-  s+=`<ellipse cx="100" cy="200" rx="55" ry="54" fill="${K.c}"/><ellipse cx="100" cy="212" rx="32" ry="38" fill="${K.w}"/>`;
+  s+=`<ellipse cx="100" cy="${K.chonk?204:200}" rx="${K.chonk?64:55}" ry="${K.chonk?60:54}" fill="${K.c}"/><ellipse cx="100" cy="${K.chonk?218:212}" rx="${K.chonk?38:32}" ry="${K.chonk?42:38}" fill="${K.w}"/>`;
   if(K.stripes)s+=`<path d="M58,185 q12,4 18,-6 M56,205 q12,4 18,-6 M142,185 q-12,4 -18,-6 M144,205 q-12,4 -18,-6" stroke="${K.d}" stroke-width="6" fill="none" stroke-linecap="round"/>`;
   if(K.calico)s+=`<ellipse cx="72" cy="190" rx="16" ry="12" fill="#f5a142"/><ellipse cx="128" cy="180" rx="14" ry="10" fill="#4a3f45"/>`;
   if(K.stars)s+=`<text x="70" y="200" font-size="18">✦</text><text x="122" y="226" font-size="14">✦</text>`;
   if(o.g)s+=`<path d="M70,150 L130,150 L168,252 Q100,264 32,252Z" fill="${o.g}"/><path d="M70,150 L130,150 L134,170 L66,170Z" fill="rgba(255,255,255,.45)"/><path d="M40,240 Q70,250 100,240 Q130,250 160,240" stroke="rgba(255,255,255,.7)" stroke-width="5" fill="none"/>`;
-  s+=`<ellipse cx="78" cy="250" rx="16" ry="9" fill="${K.c}"/><ellipse cx="122" cy="250" rx="16" ry="9" fill="${K.c}"/>`;
+  s+=`<ellipse cx="78" cy="250" rx="16" ry="9" fill="${K.blaze?K.w:K.c}"/><ellipse cx="122" cy="250" rx="16" ry="9" fill="${K.blaze?K.w:K.c}"/>`;
   s+=`<path d="M56,80 L52,26 L94,58Z M144,80 L148,26 L106,58Z" fill="${K.c}"/><path d="M60,68 L58,38 L84,58Z M140,68 L142,38 L116,58Z" fill="${K.ear}"/>`;
-  s+=`<circle cx="100" cy="100" r="${K.fluff?54:50}" fill="${K.c}"/>`;
+  s+=`<circle cx="100" cy="100" r="${K.fluff?54:K.chonk?54:50}" fill="${K.c}"/>`;
+  if(K.blaze)s+=`<ellipse cx="100" cy="108" rx="11" ry="26" fill="${K.w}"/><ellipse cx="100" cy="126" rx="24" ry="16" fill="${K.w}"/>`;
   if(K.stripes)s+=`<path d="M88,54 l4,14 M100,51 l0,15 M112,54 l-4,14" stroke="${K.d}" stroke-width="6" stroke-linecap="round"/>`;
   if(K.calico)s+=`<ellipse cx="78" cy="78" rx="18" ry="14" fill="#f5a142"/>`;
   s+=`<ellipse cx="80" cy="100" rx="11" ry="14" fill="${K.eye}"/><ellipse cx="120" cy="100" rx="11" ry="14" fill="${K.eye}"/><ellipse cx="80" cy="102" rx="6" ry="9" fill="#2a1a22"/><ellipse cx="120" cy="102" rx="6" ry="9" fill="#2a1a22"/><circle cx="83" cy="96" r="4" fill="#fff"/><circle cx="123" cy="96" r="4" fill="#fff"/>`;
