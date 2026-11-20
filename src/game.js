@@ -73,6 +73,7 @@ function person(o){const sk=o.skin||SKIN.l,h=o.hair||'#7a4a2a',d=o.dress||'#ff8f
   s+=`<g transform="translate(100 320) scale(${sc}) translate(-100 -320)">`;
   // back hair
   if(hs==='long'||hs==='swoop')s+=`<path d="M48 90 Q50 30 100 32 Q150 30 152 90 L158 200 Q100 215 42 200Z" fill="${h}"/>`;
+  if(hs==='curly')s+=`<path d="M48 90 Q50 36 100 34 Q150 36 152 90 L156 190 Q100 210 44 190Z" fill="${h}"/>`+[[42,120,16],[40,150,15],[48,175,14],[158,120,16],[160,150,15],[152,175,14],[70,200,13],[130,200,13],[100,208,14],[36,100,13],[164,100,13]].map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${h}"/>`).join('');
   if(hs==='pony')s+=`<path d="M140 70 Q185 90 165 170 Q150 140 140 110Z" fill="${h}"/>`;
   if(hs==='short'&&!o.boy)s+=`<path d="M50 90 Q50 32 100 32 Q150 32 150 90 L152 135 Q100 145 48 135Z" fill="${h}"/>`;
   // body
@@ -100,6 +101,7 @@ function person(o){const sk=o.skin||SKIN.l,h=o.hair||'#7a4a2a',d=o.dress||'#ff8f
   // front hair
   if(hs==='swoop')s+=`<path d="M52 92 Q52 40 100 40 Q150 40 148 80 Q120 60 95 100 Q80 120 60 125Z" fill="${h}"/>`;
   else if(hs==='bun')s+=`<circle cx="100" cy="40" r="22" fill="${h}"/><path d="M52 92 Q55 42 100 44 Q145 42 148 92 Q130 62 100 62 Q70 62 52 92Z" fill="${h}"/>`;
+  else if(hs==='curly')s+=`<path d="M52 92 Q55 40 100 42 Q145 40 148 92 Q130 62 100 58 Q70 62 52 92Z" fill="${h}"/>`+[[62,58,14],[100,46,16],[138,58,14],[78,50,12],[122,50,12],[50,78,11],[150,78,11]].map(([x,y,r])=>`<circle cx="${x}" cy="${y}" r="${r}" fill="${h}"/>`).join('');
   else s+=`<path d="M52 92 Q55 40 100 42 Q145 40 148 92 Q135 66 115 70 Q100 56 85 70 Q65 66 52 92Z" fill="${h}"/>`;
   s+=`<path d="M70 66 Q84 52 100 52" stroke="#fff" stroke-width="5" opacity=".3" fill="none" stroke-linecap="round"/>`;
   if(hs==='braid')s+=`<g fill="${h}">${[0,1,2,3,4,5].map(i=>`<ellipse cx="${64-i*1.5}" cy="${132+i*22}" rx="${15-i}" ry="14"/>`).join('')}</g><path d="M60 100 Q55 120 64 132" stroke="${h}" stroke-width="16" fill="none"/>`;
@@ -111,7 +113,7 @@ function person(o){const sk=o.skin||SKIN.l,h=o.hair||'#7a4a2a',d=o.dress||'#ff8f
   if(c==='star')s+=`<path transform="translate(100 34) scale(2.6)" d="M0-8 2-2 8-2 3 2 5 8 0 4-5 8-3 2-8-2-2-2Z" fill="#fff36b" stroke="#f4b400" stroke-width=".8"/>`;
   if(c==='flower')s+=`<g transform="translate(130 52)">${[0,72,144,216,288].map(a=>`<circle cx="${10*Math.cos(a*Math.PI/180)}" cy="${10*Math.sin(a*Math.PI/180)}" r="8" fill="#ff8fc8"/>`).join('')}<circle r="6" fill="#ffd34d"/></g>`;
   if(c==='heart')s+=`<path transform="translate(100 30) scale(1.6)" d="M0 8 C-14-2-8-14 0-6 C8-14 14-2 0 8Z" fill="#ff4f9a" stroke="#fff" stroke-width="1.5"/>`;
-  if(c==='bow')s+=`<path d="M120 50 l18-12 v24z M120 50 l-18-12 v24z" fill="#ff4f9a"/><circle cx="120" cy="50" r="6" fill="#d8327d"/>`;
+  if(c==='bow'||(hs==='curly'&&c!=='bow'))s+=`<path d="M100 38 l18-12 v24z M100 38 l-18-12 v24z" fill="#ff4f9a"/><circle cx="100" cy="38" r="6" fill="#d8327d"/>`;
   if(c==='snowtiara')s+=`<g stroke="#bfe6ff" stroke-width="4" stroke-linecap="round"><path d="M88 48 L100 26 L112 48"/></g><path transform="translate(100 34)" d="M-8 0H8M0-8V8M-6-6 6 6M6-6-6 6" stroke="#fff" stroke-width="3"/>`;
   s+='</g>';return `<svg viewBox="0 0 200 330" xmlns="http://www.w3.org/2000/svg">${s}</svg>`}
 function unicorn(m){const rb=['#ff6b8b','#ffb347','#ffe66d','#7ee08a','#6cc6ff','#b28dff'];const mane=m==='rainbow'?rb:[m,m,'#fff',m,m,'#fff'];const body=m==='rainbow'?'#fff':'#fff';
@@ -127,13 +129,13 @@ function unicorn(m){const rb=['#ff6b8b','#ffb347','#ffe66d','#7ee08a','#6cc6ff',
 const _person=person;person=function(o){let s=_person(o);if(o.boy)s=s.replace(/<path d="M73 92[^>]*\/>/,'').replace('<circle cx="100" cy="95" r="48"','<path d="M52 88 Q50 60 60 50 L148 50 Q152 62 148 88Z" fill="'+(o.hair||'#6b4a2a')+'"/><circle cx="100" cy="95" r="48"');return s};
 const SAVE=JSON.parse(localStorage.getItem('zpc')||'{}');SAVE.dress=SAVE.dress||'#ff8fc8';SAVE.crown=SAVE.crown||'crown';SAVE.hair=SAVE.hair||'#7a4a2a';SAVE.uni=SAVE.uni||'rainbow';SAVE.stk=SAVE.stk||0;SAVE.party=SAVE.party||['peach','elsa','anna'];
 const save=()=>localStorage.setItem('zpc',JSON.stringify(SAVE));
-const zoe=()=>({kid:1,skin:SKIN.l,hair:SAVE.hair,hs:'long',dress:SAVE.dress,dress2:'#fff3fb',crown:SAVE.crown});
+const zoe=()=>({kid:1,skin:SKIN.l,hair:SAVE.hair||'#7a4a28',hs:'curly',dress:SAVE.dress,dress2:'#fff3fb',crown:SAVE.crown,eye:'#6b3a1a'});
 const FR={peach:{n:'Princess Peach',o:{skin:SKIN.l,hair:'#ffd560',hs:'long',dress:'#ff9cc9',dress2:'#ff6fae',crown:'crown'},v:'f_peach',fx:'💗'},
   rosa:{n:'Princess Rosalina',o:{skin:SKIN.l,hair:'#f6efc8',hs:'swoop',dress:'#7fd6e8',dress2:'#b6eef7',crown:'star',wand:1,star:1},v:'f_rosa',fx:'⭐'},
   elsa:{n:'Elsa',o:{skin:SKIN.l,hair:'#f3f1ea',hs:'braid',dress:'#9fd8ff',dress2:'#e3f6ff',crown:'snowtiara',snow:1},v:'f_elsa',fx:'❄️'},
   anna:{n:'Anna',o:{skin:SKIN.l,hair:'#c8572a',hs:'braids2',dress:'#3f6fb5',dress2:'#e85d8a',crown:'flower',freck:1},v:'f_anna',fx:'🌸'},
   dad:{n:'Daddy',o:{skin:SKIN.l,hair:'#6b4a2a',hs:'short',boy:1,dress:'#57c785',dress2:'#c8f7d0',gown:false,pants:'#3f6fb5',shoe:'#5a3a22'},v:'f_dad',fx:'💚'},
-  alex:{n:'Alex',o:{kid:1,skin:SKIN.l,hair:'#8a5a2a',hs:'short',boy:1,dress:'#4aa8ff',dress2:'#c9ecff',gown:false,pants:'#2c4a7a',shoe:'#ff6b6b'},v:'f_alex',fx:'⚽'},
+  alex:{n:'Alex',o:{kid:1,skin:SKIN.l,hair:'#3a2416',hs:'short',boy:1,dress:'#1e8a96',dress2:'#e8b84a',gown:false,pants:'#2c4a7a',shoe:'#8b5a2e'},v:'f_alex',fx:'⚽'},
   mom:{n:'Mommy',o:{skin:SKIN.l,hair:'#5a3a22',hs:'long',dress:'#b28dff',dress2:'#e0d0ff',gown:false,shoe:'#7a52c7'},v:'f_mom',fx:'💜'},
   gail:{n:'Grandma Gail',o:{skin:SKIN.l,hair:'#d8d8de',hs:'bun',dress:'#5fc3a8',dress2:'#bff0e2',gown:false,glasses:1,shoe:'#2f8f77'},v:'f_gail',fx:'🌷'},
   gammy:{n:'Gammy',o:{skin:SKIN.l,hair:'#e8d4a8',hs:'short',dress:'#ff9a76',dress2:'#ffd6c6',gown:false,shoe:'#e0663a'},v:'f_gammy',fx:'🌺'},
